@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { LogBox, Platform, StatusBar, UIManager } from 'react-native'
 import useAppState from 'react-native-appstate-hook'
 import { ThemeProvider } from '@shopify/restyle'
-import OneSignal, { OpenedEvent } from 'react-native-onesignal'
+// import OneSignal, { OpenedEvent } from 'react-native-onesignal'
 import Config from 'react-native-config'
 import { useSelector } from 'react-redux'
 import MapboxGL from '@react-native-mapbox-gl/maps'
@@ -32,9 +32,7 @@ import { fetchFeatures } from './store/features/featuresSlice'
 import usePrevious from './utils/usePrevious'
 import StatusBanner from './components/StatusBanner'
 import { fetchStatus } from './store/helium/heliumStatusSlice'
-import notificationSlice, {
-  fetchNotifications,
-} from './store/notifications/notificationSlice'
+import { fetchNotifications } from './store/notifications/notificationSlice'
 import AppLinkProvider from './providers/AppLinkProvider'
 import { navigationRef } from './navigation/navigator'
 
@@ -90,17 +88,17 @@ const App = () => {
   // initialize external libraries
   useAsync(configChainVars, [])
   useEffect(() => {
-    OneSignal.setAppId(Config.ONE_SIGNAL_APP_ID)
-    OneSignal.setNotificationOpenedHandler((event: OpenedEvent) => {
-      // handles opening a notification
-      dispatch(
-        notificationSlice.actions.pushNotificationOpened(event.notification),
-      )
-    })
-    OneSignal.setNotificationWillShowInForegroundHandler(() => {
-      // handles fetching new notifications while the app is in focus
-      dispatch(fetchNotifications())
-    })
+    // OneSignal.setAppId(Config.ONE_SIGNAL_APP_ID)
+    // OneSignal.setNotificationOpenedHandler((event: OpenedEvent) => {
+    //   // handles opening a notification
+    //   dispatch(
+    //     notificationSlice.actions.pushNotificationOpened(event.notification),
+    //   )
+    // })
+    // OneSignal.setNotificationWillShowInForegroundHandler(() => {
+    //   // handles fetching new notifications while the app is in focus
+    //   dispatch(fetchNotifications())
+    // })
     MapboxGL.setAccessToken(Config.MAPBOX_ACCESS_TOKEN)
     Logger.init()
   }, [dispatch])
