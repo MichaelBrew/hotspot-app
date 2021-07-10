@@ -30,7 +30,7 @@ import H3Grid from './H3Grid'
 import NetworkCoverage from './NetworkCoverage'
 import HotspotsCoverage from './HotspotsCoverage'
 
-const styleURL = 'mapbox://styles/petermain/ckjtsfkfj0nay19o3f9jhft6v'
+// const styleURL = 'mapbox://styles/petermain/ckjtsfkfj0nay19o3f9jhft6v'
 
 type Props = BoxProps<Theme> & {
   onMapMoved?: (coords?: Position) => void
@@ -241,7 +241,7 @@ const Map = ({
         onRegionDidChange={onRegionDidChange}
         onRegionWillChange={onMapMoving}
         onDidFinishLoadingMap={onDidFinishLoad}
-        styleURL={styleURL}
+        // styleURL={styleURL}
         style={styles.map}
         logoEnabled={false}
         rotateEnabled={false}
