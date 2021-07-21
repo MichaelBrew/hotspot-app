@@ -13,9 +13,9 @@ export type AppLinkFieldType = typeof AppLinkFields[number]
 export type AppLink = {
   type: AppLinkCategoryType
   address: string
-  amount?: string
+  amount?: string | number
   memo?: string
-  [key: string]: string | undefined
+  [key: string]: string | number | undefined
 }
 
 export type AppLinkPayment = {
@@ -26,12 +26,13 @@ export type AppLinkPayment = {
 // Used by AppLink to represent multiple payees within a single blockchain transaction
 export type Payee = {
   address: string
-  amount?: string
+  amount?: string | number
   memo?: string
 }
 
 export type AppLinkLocation = {
   type: AppLinkCategoryType
-  latitude: string
-  longitude: string
+  hotspotAddress: string
+  latitude: number
+  longitude: number
 }

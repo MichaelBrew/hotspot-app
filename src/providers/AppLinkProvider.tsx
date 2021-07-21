@@ -36,10 +36,6 @@ const useAppLink = () => {
     AppLink | AppLinkPayment | null
   >(null)
 
-  const qrOnboardEnabled = useSelector(
-    (state: RootState) => state.features.qrOnboardEnabled,
-  )
-
   const {
     app: { isLocked, isBackedUp },
   } = useSelector((state: RootState) => state)
@@ -83,13 +79,6 @@ const useAppLink = () => {
           break
 
         case 'add_gateway': {
-          if (!qrOnboardEnabled) {
-            if (qrOnboardEnabled === undefined) {
-              setUnhandledLink(record as AppLink)
-            }
-            return
-          }
-
           const { address: txnStr } = record as AppLink
           if (!txnStr) return
 
@@ -97,30 +86,30 @@ const useAppLink = () => {
           break
         }
 
-        case 'hotspot_location':
+        case 'hotspot_location': {
+          const {
+            hotspotAddress,
+            longitude,
+            latitude,
+          } = record as AppLinkLocation
           navigator.updateHotspotLocation({
-            location: record as AppLinkLocation,
+            hotspotAddress,
+            location: { latitude, longitude },
           })
           break
+        }
       }
     },
-    [isLocked, isBackedUp, qrOnboardEnabled],
+    [isLocked, isBackedUp],
   )
 
   useEffect(() => {
     // Links will be handled once the app is unlocked
-    if (
-      !unhandledAppLink ||
-      isLocked ||
-      !isBackedUp ||
-      (unhandledAppLink?.type === 'add_gateway' &&
-        qrOnboardEnabled === undefined)
-    )
-      return
+    if (!unhandledAppLink || isLocked || !isBackedUp) return
 
     navToAppLink(unhandledAppLink)
     setUnhandledLink(null)
-  }, [isLocked, navToAppLink, unhandledAppLink, isBackedUp, qrOnboardEnabled])
+  }, [isLocked, navToAppLink, unhandledAppLink, isBackedUp])
 
   const parseUrl = useCallback((url: string) => {
     if (!url) return
@@ -152,9 +141,10 @@ const useAppLink = () => {
   const parseLocation = (data: string): AppLinkLocation | undefined => {
     try {
       const dataObj = JSON.parse(data)
-      if (dataObj.lat && dataObj.lng) {
+      if (dataObj.lat && dataObj.lng && dataObj.address) {
         return {
           type: 'hotspot_location',
+          hotspotAddress: dataObj.address,
           latitude: dataObj.lat,
           longitude: dataObj.lng,
         }
@@ -165,10 +155,11 @@ const useAppLink = () => {
   /**
    * The data scanned from the QR code is expected to be one of these possibilities:
    * (1) A helium deeplink URL
-   * (2) A lat/lng pair for hotspot location updates
+   * (2) A lat/lng pair + hotspot address for hotspot location updates
    * (3) address string
    * (4) stringified JSON object { type, address, amount?, memo? }
-   * (5) stringified JSON object { type, payees: {[payeeAddress]: { amount, memo? }} }
+   * (5) stringified JSON object { type, payees: {[payeeAddress]: amount} }
+   * (6) stringified JSON object { type, payees: {[payeeAddress]: { amount, memo? }} }
    */
   const parseBarCodeData = useCallback(
     (
@@ -241,11 +232,26 @@ const useAppLink = () => {
             scanResult = {
               type,
               payees: Object.entries(rawScanResult.payees).map((entries) => {
-                const scanData = entries[1] as { amount: string; memo?: string }
+                let amount
+                let memo
+                if (entries[1]) {
+                  if (typeof entries[1] === 'number') {
+                    // Case (5) stringified JSON object { type, payees: {[payeeAddress]: amount} }
+                    amount = entries[1] as number
+                  } else if (typeof entries[1] === 'object') {
+                    // Case (6) stringified JSON object { type, payees: {[payeeAddress]: { amount, memo? }} }
+                    const scanData = entries[1] as {
+                      amount: string
+                      memo?: string
+                    }
+                    amount = scanData.amount
+                    memo = scanData.memo
+                  }
+                }
                 return {
                   address: entries[0],
-                  amount: scanData.amount,
-                  memo: scanData.memo,
+                  amount: `${amount}`,
+                  memo,
                 } as Payee
               }),
             }

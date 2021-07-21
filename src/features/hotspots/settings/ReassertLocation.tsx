@@ -1,13 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import Balance, { CurrencyType } from '@helium/currency'
-import { useNavigation } from '@react-navigation/native'
 import React, { memo, useCallback, useEffect, useState } from 'react'
 import { useAsync } from 'react-async-hook'
 import { Hotspot, Witness } from '@helium/http'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../store/rootReducer'
 import animateTransition from '../../../utils/animateTransition'
-import useHaptic from '../../../utils/useHaptic'
 import ReassertLocationFee from './ReassertLocationFee'
 import ReassertLocationUpdate from './ReassertLocationUpdate'
 import { useHotspotSettingsContext } from './HotspotSettingsProvider'
@@ -16,13 +14,10 @@ import ReassertAddressSearch from './ReassertAddressSearch'
 import { PlaceGeography } from '../../../utils/googlePlaces'
 import { loadLocationFeeData } from '../../../utils/assertLocationUtils'
 import { OnboardingRecord } from '../../../utils/stakingClient'
-import { RootNavigationProp } from '../../../navigation/main/tabTypes'
-import { useAppDispatch } from '../../../store/store'
-import hotspotDetailsSlice from '../../../store/hotspotDetails/hotspotDetailsSlice'
 
 export type Coords = { latitude: number; longitude: number }
 export type ReassertLocationState = 'fee' | 'update' | 'confirm' | 'search'
-const DEFAULT_FEE_DATA = {
+export const DEFAULT_FEE_DATA = {
   remainingFreeAsserts: 0,
   totalStakingAmountDC: new Balance(0, CurrencyType.dataCredit),
   totalStakingAmountUsd: new Balance(0, CurrencyType.usd),
@@ -45,9 +40,6 @@ const ReassertLocation = ({
   onStateChange,
   onboardingRecord,
 }: Props) => {
-  const { triggerNavHaptic } = useHaptic()
-  const dispatch = useAppDispatch()
-  const navigation = useNavigation<RootNavigationProp>()
   const account = useSelector((state: RootState) => state.account.account)
   const [state, setState] = useState<ReassertLocationState>('fee')
   const [updatedLocation, setUpdatedLocation] = useState<Coords | undefined>()
@@ -64,7 +56,9 @@ const ReassertLocation = ({
   )
 
   const handleBack = useCallback(() => {
-    animateTransition('ReassertLocation.HandleBack', false)
+    animateTransition('ReassertLocation.HandleBack', {
+      enabledOnAndroid: false,
+    })
     switch (state) {
       case 'fee':
         onFinished(undefined, '')
@@ -91,7 +85,9 @@ const ReassertLocation = ({
   }
 
   const handleSearch = useCallback(() => {
-    animateTransition('ReassertLocation.HandleSearch', false)
+    animateTransition('ReassertLocation.HandleSearch', {
+      enabledOnAndroid: false,
+    })
     onStateChange('search')
     setState('search')
   }, [onStateChange])
@@ -107,12 +103,6 @@ const ReassertLocation = ({
     [onStateChange],
   )
 
-  const handleScan = () => {
-    triggerNavHaptic()
-    navigation.navigate('ScanStack')
-    dispatch(hotspotDetailsSlice.actions.toggleShowSettings())
-  }
-
   const amount = feeData.isFree
     ? 'O DC'
     : feeData.totalStakingAmountDC.toString(0, {
@@ -127,7 +117,9 @@ const ReassertLocation = ({
           {...feeData}
           hotspot={hotspot}
           onChangeLocation={() => {
-            animateTransition('ReassertLocation.OnChangeLocation', false)
+            animateTransition('ReassertLocation.OnChangeLocation', {
+              enabledOnAndroid: false,
+            })
             onStateChange('update')
             setState('update')
           }}
@@ -137,6 +129,7 @@ const ReassertLocation = ({
       return (
         <ReassertLocationUpdate
           amount={amount}
+          hotspot={hotspot}
           key={state}
           coords={
             hotspot.lat && hotspot.lng
@@ -145,12 +138,13 @@ const ReassertLocation = ({
           }
           onCancel={handleBack}
           onSearch={handleSearch}
-          onScan={handleScan}
           onConfirm={handleComplete}
           locationSelected={(latitude, longitude, name) => {
             setUpdatedLocation({ latitude, longitude })
             setLocationName(name)
-            animateTransition('ReassertLocation.LocationSelected', false)
+            animateTransition('ReassertLocation.LocationSelected', {
+              enabledOnAndroid: false,
+            })
             onStateChange('confirm')
             setState('confirm')
           }}
@@ -162,6 +156,7 @@ const ReassertLocation = ({
       return (
         <ReassertLocationUpdate
           amount={amount}
+          hotspot={hotspot}
           key={state}
           onCancel={handleBack}
           confirming
