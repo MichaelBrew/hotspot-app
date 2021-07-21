@@ -38,6 +38,7 @@ import animateTransition from '../../../utils/animateTransition'
 import { RootNavigationProp } from '../../../navigation/main/tabTypes'
 import useHaptic from '../../../utils/useHaptic'
 import WalletEmpty from './WalletEmpty'
+import Button from '../../../components/Button'
 
 type Props = {
   showSkeleton: boolean
@@ -216,6 +217,15 @@ const WalletView = ({
         {(activityViewState === 'activity' || balanceInfoSplit.hasBalance) && (
           <Box onLayout={handleLayout('header')}>
             <WalletHeader handleScanPressed={navScan} />
+            {/* Temporary while QR button isn't clickable on iPhone 6 */}
+            <Button
+              margin="m"
+              marginTop="none"
+              onPress={navScan}
+              variant="primary"
+              mode="contained"
+              title="QR Code Scan"
+            />
             <BalanceCard
               onReceivePress={toggleShowReceive}
               onSendPress={handleSendPress}
