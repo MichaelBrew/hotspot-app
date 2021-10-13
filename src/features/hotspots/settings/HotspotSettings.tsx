@@ -94,7 +94,8 @@ const HotspotSettings = ({ hotspot }: Props) => {
     (state: RootState) => state.location,
   )
   const isDeployModeEnabled = useSelector(
-    (state: RootState) => state.app.isDeployModeEnabled,
+    (state: RootState) =>
+      state.app.isDeployModeEnabled || state.app.isSecureModeEnabled,
   )
   const { showOKAlert, showOKCancelAlert } = useAlert()
 

@@ -21,7 +21,8 @@ const hitSlop = { top: 12, bottom: 12, left: 24, right: 24 } as Insets
 const WalletHeader = ({ handleScanPressed, hideTitle, ...boxProps }: Props) => {
   const { t } = useTranslation()
   const isDeployModeEnabled = useSelector(
-    (state: RootState) => state.app.isDeployModeEnabled,
+    (state: RootState) =>
+      state.app.isDeployModeEnabled || state.app.isSecureModeEnabled,
   )
   const walletTitleIcon = isDeployModeEnabled ? (
     <Box marginLeft="s">

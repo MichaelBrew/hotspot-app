@@ -99,7 +99,8 @@ const SendView = ({
     (state: RootState) => state.heliumData.currentOraclePrice,
   )
   const isDeployModeEnabled = useSelector(
-    (state: RootState) => state.app.isDeployModeEnabled,
+    (state: RootState) =>
+      state.app.isDeployModeEnabled || state.app.isSecureModeEnabled,
   )
   const [type, setType] = useState<AppLinkCategoryType>(sendType || 'payment')
   const [isLocked, setIsLocked] = useState(isDisabled)
@@ -474,7 +475,7 @@ const SendView = ({
         throw new Error('transfer delete invalid')
       }
       return txn
-    } catch (error) {
+    } catch (error: any) {
       if (
         error.message !== 'transfer amount changed' &&
         error.message !== 'transfer nonce invalid' &&

@@ -298,11 +298,11 @@ const MoreScreen = () => {
       {
         title: t('more.sections.security.revealWords'),
         onPress: handleRevealWords,
-        disabled: app.isDeployModeEnabled,
+        disabled: app.isDeployModeEnabled || app.isSecureModeEnabled,
       },
       {
         title: t('more.sections.security.deployMode.enableButton'),
-        value: app.isDeployModeEnabled,
+        value: app.isDeployModeEnabled || app.isSecureModeEnabled,
         onToggle: () => {
           setShowingDeployModeConfirmation(true)
         },
@@ -312,7 +312,7 @@ const MoreScreen = () => {
             onClose={() => setShowingDeployModeConfirmation(false)}
           />
         ),
-        disabled: app.isDeployModeEnabled,
+        disabled: app.isDeployModeEnabled || app.isSecureModeEnabled,
       },
     ]
     return [
@@ -414,6 +414,7 @@ const MoreScreen = () => {
     t,
     handlePinRequired,
     app.isPinRequired,
+    app.isSecureModeEnabled,
     app.isDeployModeEnabled,
     app.isHapticDisabled,
     app.authInterval,

@@ -91,7 +91,8 @@ const HotspotsList = ({
   const prevOrder = usePrevious(gatewaySortOrder)
 
   const isDeployModeEnabled = useSelector(
-    (state: RootState) => state.app.isDeployModeEnabled,
+    (state: RootState) =>
+      state.app.isDeployModeEnabled || state.app.isSecureModeEnabled,
   )
 
   const locationDeniedHandler = useCallback(() => {
