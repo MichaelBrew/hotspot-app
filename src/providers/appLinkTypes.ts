@@ -3,6 +3,7 @@ export const AppLinkCategories = [
   'dc_burn',
   'transfer',
   'hotspot',
+  'validator',
   'add_gateway',
   'hotspot_location',
 ] as const
@@ -20,6 +21,7 @@ export type AppLink = {
 
 export type AppLinkPayment = {
   type: AppLinkCategoryType
+  senderAddress?: string
   payees: Array<Payee>
 }
 

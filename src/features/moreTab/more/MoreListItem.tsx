@@ -7,6 +7,8 @@ import CarotRight from '../../../assets/images/carot-right.svg'
 import LinkImg from '../../../assets/images/link.svg'
 import HeliumActionSheet from '../../../components/HeliumActionSheet'
 import { HeliumActionSheetItemType } from '../../../components/HeliumActionSheetItem'
+import { Colors } from '../../../theme/theme'
+import { hp } from '../../../utils/layout'
 
 export type SelectProps = {
   onDonePress?: () => void
@@ -72,7 +74,7 @@ const MoreListItem = ({
     [],
   )
 
-  let textColor = 'primaryText'
+  let textColor: Colors = 'primaryText'
   if (destructive && !disabled) textColor = 'redMain'
   if (destructive && disabled) textColor = 'redMedium'
   if (!destructive && disabled) textColor = 'disabled'
@@ -118,6 +120,7 @@ const MoreListItem = ({
           title={title}
           textProps={actionSheetTextProps}
           iconVariant="none"
+          maxModalHeight={hp(80)}
         />
       )}
     </TouchableOpacityBox>

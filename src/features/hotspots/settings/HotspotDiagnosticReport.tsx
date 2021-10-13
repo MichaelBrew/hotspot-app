@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import { useAsync } from 'react-async-hook'
 import { useTranslation } from 'react-i18next'
 import { capitalize, times } from 'lodash'
@@ -26,8 +26,8 @@ import animateTransition from '../../../utils/animateTransition'
 import { locale } from '../../../utils/i18n'
 import useAlert from '../../../utils/useAlert'
 import usePrevious from '../../../utils/usePrevious'
-import { getSyncStatus, SyncStatus } from '../../../utils/hotspotUtils'
 import { getMakerSupportEmail } from '../../../makers'
+import useHotspotSync from '../useHotspotSync'
 
 type Info = {
   percentSynced: number
@@ -35,7 +35,7 @@ type Info = {
   currentTime: number
   height: number
   hasLastChallenge: boolean
-  fullySynced: boolean | 'partial'
+  fullySynced: boolean
 }
 
 const formatMac = (mac: string) =>
@@ -60,7 +60,12 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
   const [info, setInfo] = useState<Info>()
   const { showOKAlert } = useAlert()
   const [lineItems, setLineItems] = useState<
-    { attribute: string; value?: string }[]
+    {
+      attribute: string
+      value?: string
+      showFailure?: boolean
+      description?: string
+    }[]
   >([])
   const { result: diagnostics, error } = useAsync(getDiagnosticInfo, [])
   const prevError = usePrevious(error)
@@ -75,8 +80,25 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
     onboardingRecord,
   } = useSelector((state: RootState) => state.connectedHotspot)
   const { blockHeight } = useSelector((state: RootState) => state.heliumData)
+  const { getSyncStatus, getSyncPercentage } = useHotspotSync()
   const dispatch = useAppDispatch()
   const { enableBack } = useHotspotSettingsContext()
+
+  const diskIsReadOnly = useMemo(
+    () => (diagnostics?.disk || '') === 'read-only',
+    [diagnostics?.disk],
+  )
+
+  const diskStatus = useMemo(() => {
+    switch (diagnostics?.disk) {
+      case 'read-only':
+        return t('hotspot_settings.diagnostics.disk_read_only')
+      case 'ok':
+        return t('generic.ok')
+      default:
+        return t('hotspot_settings.diagnostics.disk_no_data')
+    }
+  }, [diagnostics?.disk, t])
 
   useEffect(() => {
     enableBack(() => onFinished())
@@ -122,6 +144,14 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
           : t('generic.unavailable'),
       },
       {
+        attribute: t('hotspot_settings.diagnostics.disk'),
+        value: diskStatus,
+        showFailure: diskIsReadOnly,
+        description: diskIsReadOnly
+          ? t('hotspot_settings.diagnostics.disk_read_only_instructions')
+          : undefined,
+      },
+      {
         attribute: t('hotspot_settings.diagnostics.nat_type'),
         value: diagnostics?.nat_type
           ? capitalize(diagnostics.nat_type)
@@ -147,6 +177,8 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
     version,
     info?.currentTime,
     onboardingRecord?.maker?.name,
+    diskIsReadOnly,
+    diskStatus,
   ])
 
   useEffect(() => {
@@ -165,21 +197,22 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
     nextInfo.currentTime = getUnixTime(new Date())
     nextInfo.height = parseInt(diagnostics?.height || '0', 10)
 
-    const { status } = getSyncStatus(nextInfo.height, blockHeight)
-    switch (status) {
-      case SyncStatus.full:
-        nextInfo.fullySynced = true
-        break
-      case SyncStatus.partial:
-        nextInfo.fullySynced = 'partial'
-        break
-      case SyncStatus.none:
-        nextInfo.fullySynced = false
-        break
-    }
+    const status = getSyncStatus({
+      hotspotBlockHeight: nextInfo.height,
+    })
 
+    nextInfo.fullySynced = status === 'full'
+    nextInfo.percentSynced = getSyncPercentage({
+      hotspotBlockHeight: nextInfo.height,
+    })
     setInfo(nextInfo)
-  }, [blockHeight, challenges, diagnostics?.height])
+  }, [
+    blockHeight,
+    challenges,
+    diagnostics?.height,
+    getSyncPercentage,
+    getSyncStatus,
+  ])
 
   useEffect(() => {
     dispatch(
@@ -204,6 +237,7 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
 
   const handleSendReport = useCallback(() => {
     const supportEmail = getMakerSupportEmail(onboardingRecord?.maker?.id)
+    const descriptionInfo = t('hotspot_settings.diagnostics.desc_info')
     sendReport({
       eth: diagnostics?.eth ? formatMac(diagnostics.eth) : '',
       wifi: diagnostics?.wifi ? formatMac(diagnostics.wifi) : '',
@@ -212,6 +246,7 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
       dialable: diagnostics?.dialable || '',
       natType: capitalize(diagnostics?.nat_type || ''),
       ip: capitalize(diagnostics?.ip || ''),
+      disk: diagnostics?.disk || '',
       height: info?.height ? info.height.toLocaleString(locale) : 'Unknown',
       lastChallengeDate: getLastChallengeDate(),
       reportGenerated: info?.currentTime
@@ -221,6 +256,7 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
       hotspotMaker: onboardingRecord?.maker?.name || 'Unknown',
       appVersion: version,
       supportEmail,
+      descriptionInfo,
     })
   }, [
     address,
@@ -230,6 +266,7 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
     info,
     onboardingRecord,
     version,
+    t,
   ])
 
   if (loading) {
@@ -337,11 +374,13 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
         </Text>
         <Card variant="regular">
           {[
-            lineItems.map(({ attribute, value }) => (
+            lineItems.map(({ attribute, value, showFailure, description }) => (
               <DiagnosticLineItem
                 attribute={attribute}
                 value={value}
                 key={attribute}
+                showFailure={showFailure}
+                description={description}
               />
             )),
           ]}

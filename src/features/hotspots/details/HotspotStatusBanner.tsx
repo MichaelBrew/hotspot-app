@@ -1,44 +1,43 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Hotspot, Witness } from '@helium/http'
+import { Hotspot, Validator, Witness } from '@helium/http'
 import { BoxProps } from '@shopify/restyle'
 import React, { useState, useEffect, memo, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import Close from '@assets/images/close.svg'
 import Box from '../../../components/Box'
 import Text from '../../../components/Text'
-import { RootState } from '../../../store/rootReducer'
-import { Theme } from '../../../theme/theme'
+import { Colors, Theme } from '../../../theme/theme'
 import { useColors } from '../../../theme/themeHooks'
 import TouchableOpacityBox from '../../../components/TouchableOpacityBox'
 import animateTransition from '../../../utils/animateTransition'
 import usePrevious from '../../../utils/usePrevious'
+import useHotspotSync from '../useHotspotSync'
 
 type Props = BoxProps<Theme> & {
-  hotspot: Hotspot | Witness
+  hotspot?: Hotspot | Witness | Validator
   visible: boolean
   onDismiss: () => void
+  title?: string
+  subtitle?: string
+  backgroundColor?: Colors
+  textColor?: Colors
 }
 const HotspotStatusBanner = ({
   hotspot,
   visible: propsVisible,
   onDismiss,
+  title,
+  subtitle,
+  backgroundColor = 'orangeDark',
+  textColor = 'orangeExtraDark',
   ...boxProps
 }: Props) => {
-  const blockHeight = useSelector(
-    (state: RootState) => state.heliumData.blockHeight,
-  )
-  const syncStatuses = useSelector(
-    (state: RootState) => state.hotspots.syncStatuses,
-  )
   const { t } = useTranslation()
-  const { orangeExtraDark } = useColors()
+  const colors = useColors()
   const [visible, setVisible] = useState(false)
-  const prevHotspotAddress = usePrevious(hotspot.address)
-  const hotspotSyncStatus = useMemo(() => syncStatuses[hotspot.address], [
-    hotspot.address,
-    syncStatuses,
-  ])
+  const prevHotspotAddress = usePrevious(hotspot?.address)
+
+  const { getStatusMessage } = useHotspotSync(hotspot)
 
   useEffect(() => {
     if (visible === propsVisible) return
@@ -47,73 +46,64 @@ const HotspotStatusBanner = ({
   }, [propsVisible, visible])
 
   useEffect(() => {
-    if (prevHotspotAddress === hotspot.address || !visible) return
+    if (prevHotspotAddress === hotspot?.address || !visible) return
 
     onDismiss()
-  }, [hotspot.address, onDismiss, prevHotspotAddress, visible])
+  }, [hotspot?.address, onDismiss, prevHotspotAddress, visible])
 
-  const title = useMemo(() => {
-    if (hotspot.status?.online === 'online') {
+  const titleText = useMemo(() => {
+    if (title !== undefined) return title
+
+    if (hotspot?.status?.online === 'online') {
       return t('hotspot_details.status_prompt_online.title')
     }
     return t('hotspot_details.status_prompt_offline.title')
-  }, [hotspot.status, t])
-
-  const subtitle = useMemo(() => {
-    if (hotspot.status?.online !== 'online') return
-
-    if (!hotspotSyncStatus || hotspotSyncStatus.hotspotBlockHeight === 0) {
-      return t('hotspot_details.status_prompt_online.subtitle_starting')
-    }
-
-    if (hotspotSyncStatus?.hotspotBlockHeight) {
-      return t('hotspot_details.status_prompt_online.subtitle_active', {
-        hotspotBlock: hotspotSyncStatus?.hotspotBlockHeight,
-        currentBlock: blockHeight,
-      })
-    }
-
-    return ' '
-  }, [blockHeight, hotspot.status, hotspotSyncStatus, t])
+  }, [hotspot?.status?.online, t, title])
 
   const handleClose = useCallback(() => {
     onDismiss()
   }, [onDismiss])
 
+  const subtitleText = useMemo(() => {
+    if (subtitle !== undefined) return subtitle
+
+    if (hotspot?.status?.online !== 'online') return null
+
+    return getStatusMessage()
+  }, [getStatusMessage, hotspot?.status?.online, subtitle])
+
   if (!visible) return null
 
   return (
     <Box
-      height={68}
       {...boxProps}
       paddingHorizontal="l"
+      paddingVertical="ms"
       justifyContent="center"
     >
       <Box
         position="absolute"
-        backgroundColor="orangeDark"
+        backgroundColor={backgroundColor}
         opacity={0.17}
         top={0}
         left={0}
         right={0}
         bottom={0}
       />
-      <Text
-        variant="bold"
-        fontSize={15}
-        lineHeight={21}
-        color="orangeExtraDark"
-      >
-        {title}
-      </Text>
-      {subtitle && (
+      {!!titleText && (
+        <Text variant="bold" fontSize={15} lineHeight={21} color={textColor}>
+          {titleText}
+        </Text>
+      )}
+      {!!subtitleText && (
         <Text
           variant="regular"
           fontSize={15}
           lineHeight={21}
-          color="orangeExtraDark"
+          color={textColor}
+          marginRight="l"
         >
-          {subtitle}
+          {subtitleText}
         </Text>
       )}
       <TouchableOpacityBox
@@ -125,7 +115,7 @@ const HotspotStatusBanner = ({
         justifyContent="center"
         paddingHorizontal="l"
       >
-        <Close color={orangeExtraDark} height={14} width={14} />
+        <Close color={colors[textColor]} height={14} width={14} />
       </TouchableOpacityBox>
     </Box>
   )

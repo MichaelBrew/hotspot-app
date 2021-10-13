@@ -3,11 +3,14 @@ import Client, {
   Bucket,
   Hotspot,
   NaturalDate,
+  Network,
   PendingTransaction,
   PocReceiptsV1,
   ResourceList,
+  Validator,
 } from '@helium/http'
 import { Transaction } from '@helium/transactions'
+import { subDays } from 'date-fns'
 import {
   HotspotActivityFilters,
   HotspotActivityType,
@@ -22,7 +25,27 @@ import { fromNow } from './timeUtils'
 import * as Logger from './logger'
 
 const MAX = 100000
-const client = new Client()
+let client = new Client(Network.stakejoy)
+
+// Always read pending txns from helium
+const pendingTxnsClient = new Client(Network.production)
+
+const compareNetwork = (network: string) => {
+  return (
+    (network === 'stakejoy' && client.network === Network.stakejoy) ||
+    (network === 'helium' && client.network === Network.production)
+  )
+}
+
+export const updateClient = (nextNetwork: string) => {
+  const isSame = compareNetwork(nextNetwork)
+  if (!isSame) {
+    const network =
+      nextNetwork === 'helium' ? Network.production : Network.stakejoy
+    client = new Client(network)
+    initFetchers()
+  }
+}
 
 const breadcrumbOpts = { type: 'HTTP Request', category: 'appDataClient' }
 
@@ -48,12 +71,61 @@ export const getHotspots = async () => {
   if (!address) return []
 
   const newHotspotList = await client.account(address).hotspots.list()
-  return newHotspotList.takeJSON(1000)
+  return newHotspotList.takeJSON(MAX)
+}
+
+export const getValidators = async () => {
+  Logger.breadcrumb('getValidators', breadcrumbOpts)
+  const address = await getAddress()
+  if (!address) return []
+
+  const newValidatorsList = await client.account(address).validators.list()
+  return newValidatorsList.takeJSON(MAX)
+}
+
+export const getValidatorRewards = async (
+  address: string,
+  numDaysBack: number,
+  date: Date = new Date(),
+) => {
+  Logger.breadcrumb('getValidatorRewards', breadcrumbOpts)
+  const endDate = new Date(date)
+  endDate.setDate(date.getDate() - numDaysBack)
+  const list = await client
+    .validator(address)
+    .rewards.list({ minTime: endDate, maxTime: date })
+  return list.take(MAX)
+}
+
+export const searchValidators = async (searchTerm: string) => {
+  Logger.breadcrumb('searchValidators', breadcrumbOpts)
+  const newValidatorList = await client.validators.search(searchTerm)
+  return newValidatorList.takeJSON(MAX)
+}
+
+export const getElectedValidators = async () => {
+  Logger.breadcrumb('getElectedValidators ', breadcrumbOpts)
+  const electedValidatorList = await client.validators.elected()
+  return electedValidatorList.takeJSON(MAX)
+}
+
+export const getValidatorActivityList = async (
+  address: string,
+  type = 'rewards_v2',
+) => {
+  Logger.breadcrumb('getValidatorActivity', breadcrumbOpts)
+  const params = { filterTypes: [type] }
+  return (await client.validator(address).activity.list(params)).takeJSON(MAX)
+}
+
+export const getElections = async () => {
+  Logger.breadcrumb('getElections ', breadcrumbOpts)
+  return client.elections.list()
 }
 
 export const getHotspotsForHexId = async (hexId: string) => {
   const hotspotsList = await client.hotspots.hex(hexId)
-  return hotspotsList.takeJSON(1000)
+  return hotspotsList.takeJSON(MAX)
 }
 
 export const searchHotspots = async (searchTerm: string) => {
@@ -62,23 +134,19 @@ export const searchHotspots = async (searchTerm: string) => {
   if (!address) return []
 
   const newHotspotList = await client.hotspots.search(searchTerm)
-  return newHotspotList.takeJSON(1000)
+  return newHotspotList.takeJSON(MAX)
+}
+
+export const getValidatorDetails = async (
+  address: string,
+): Promise<Validator> => {
+  Logger.breadcrumb('getValidatorDetails', breadcrumbOpts)
+  return client.validators.get(address)
 }
 
 export const getHotspotDetails = async (address: string): Promise<Hotspot> => {
   Logger.breadcrumb('getHotspotDetails', breadcrumbOpts)
   return client.hotspots.get(address)
-}
-
-export const getHotspotRewardsSum = async (
-  address: string,
-  numDaysBack: number,
-  date: Date = new Date(),
-) => {
-  Logger.breadcrumb('getHotspotRewardsSum', breadcrumbOpts)
-  const endDate = new Date(date)
-  endDate.setDate(date.getDate() - numDaysBack)
-  return client.hotspot(address).rewards.sum.get(endDate, date)
 }
 
 export const getHotspotRewards = async (
@@ -140,9 +208,22 @@ export const getAccount = async (address?: string) => {
   return data
 }
 
-export const getBlockHeight = () => {
+export const getAccountRewards = async (opts?: {
+  address?: string
+  numDaysBack?: number
+}) => {
+  Logger.breadcrumb('getAccountRewards', breadcrumbOpts)
+  const accountAddress = opts?.address || (await getAddress())
+  if (!accountAddress) return
+
+  const initialDate = new Date()
+  const endDate = subDays(initialDate, opts?.numDaysBack || 1)
+  return client.account(accountAddress).rewards.sum.get(endDate, initialDate)
+}
+
+export const getBlockHeight = (params?: { maxTime?: string }) => {
   Logger.breadcrumb('getBlockHeight', breadcrumbOpts)
-  return client.blocks.getHeight()
+  return client.blocks.getHeight(params)
 }
 
 export const getBlockStats = () => {
@@ -171,7 +252,7 @@ export const getAccountTxnsList = async (filterType: FilterType) => {
   if (!address) return
 
   if (filterType === 'pending') {
-    return client.account(address).pendingTransactions.list()
+    return pendingTxnsClient.account(address).pendingTransactions.list()
   }
 
   const params = { filterTypes: Filters[filterType] }
@@ -225,5 +306,3 @@ export const initFetchers = async () => {
     txnFetchers[key] = fetcher
   })
 }
-
-export default client

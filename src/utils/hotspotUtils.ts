@@ -1,41 +1,6 @@
-import { round } from 'lodash'
+import { Hotspot, Validator, Witness } from '@helium/http'
+import { GlobalOpt, GLOBAL_OPTS } from '../features/hotspots/root/hotspotTypes'
 import { Colors } from '../theme/theme'
-
-export enum SyncStatus {
-  full,
-  partial,
-  none,
-}
-
-export const SYNC_BLOCK_BUFFER = 1500
-
-export const getSyncStatus = (
-  hotspotBlockHeight: number,
-  blockHeight?: number,
-) => {
-  if (!blockHeight)
-    return { status: SyncStatus.none, percent: 0, hotspotBlockHeight }
-
-  const syncedRatio = hotspotBlockHeight / blockHeight
-  const percentSynced = round(syncedRatio * 100, 2)
-
-  const withinBlockBuffer = hotspotBlockHeight
-    ? blockHeight - hotspotBlockHeight <= SYNC_BLOCK_BUFFER
-    : false
-
-  if (percentSynced === 100 || withinBlockBuffer) {
-    return { status: SyncStatus.full, percent: 100, hotspotBlockHeight }
-  }
-
-  if (percentSynced === 0) {
-    return { status: SyncStatus.none, percent: 0, hotspotBlockHeight }
-  }
-  return {
-    status: SyncStatus.partial,
-    percent: percentSynced,
-    hotspotBlockHeight,
-  }
-}
 
 export const generateRewardScaleColor = (rewardScale: number): Colors => {
   if (rewardScale >= 0.75) {
@@ -55,3 +20,20 @@ export const isRelay = (listenAddrs: string[] | undefined) => {
   const IP = /ip4/g
   return listenAddrs.length > 0 && !listenAddrs.find((a) => a.match(IP))
 }
+
+export const isDataOnly = (hotspot?: Hotspot | Witness) =>
+  hotspot?.mode === 'dataonly'
+
+export const HELIUM_OLD_MAKER_ADDRESS =
+  '14fzfjFcHpDR1rTH8BNPvSi5dKBbgxaDnmsVPbCjuq9ENjpZbxh'
+
+export const isHotspot = (item: unknown): item is Hotspot =>
+  (item as Hotspot).location !== undefined &&
+  (item as Witness).witnessFor === undefined
+
+export const isWitness = (
+  item: GlobalOpt | Hotspot | Witness | Validator,
+): item is Hotspot => (item as Witness).witnessFor !== undefined
+
+export const isGlobalOption = (item: unknown): item is GlobalOpt =>
+  typeof item === 'string' && GLOBAL_OPTS.includes(item as GlobalOpt)

@@ -6,14 +6,15 @@ import {
   setSecureItem,
   signOut,
 } from '../../utils/secureAccount'
+import * as Logger from '../../utils/logger'
 import { Intervals } from '../../features/moreTab/more/useAuthIntervals'
 
 export type AppState = {
   isBackedUp: boolean
   isHapticDisabled: boolean
-  isSecureModeEnabled: boolean
+  isSecureModeEnabled: boolean // legacy
+  isDeployModeEnabled: boolean
   permanentPaymentAddress: string
-  convertHntToCurrency: boolean
   isSettingUpHotspot: boolean
   isRestored: boolean
   isPinRequired: boolean
@@ -27,8 +28,8 @@ const initialState: AppState = {
   isBackedUp: false,
   isHapticDisabled: false,
   isSecureModeEnabled: false,
+  isDeployModeEnabled: false,
   permanentPaymentAddress: '',
-  convertHntToCurrency: false,
   isSettingUpHotspot: false,
   isRestored: false,
   isPinRequired: false,
@@ -44,15 +45,15 @@ type Restore = {
   isPinRequired: boolean
   isPinRequiredForPayment: boolean
   isSecureModeEnabled: boolean
+  isDeployModeEnabled: boolean
   permanentPaymentAddress: string
   authInterval: number
   isLocked: boolean
   isHapticDisabled: boolean
-  convertHntToCurrency: boolean
 }
 
-export const restoreUser = createAsyncThunk<Restore>(
-  'app/restoreUser',
+export const restoreAppSettings = createAsyncThunk<Restore>(
+  'app/restoreAppSettings',
   async () => {
     const [
       isBackedUp,
@@ -60,9 +61,9 @@ export const restoreUser = createAsyncThunk<Restore>(
       isPinRequiredForPayment,
       authInterval,
       isHapticDisabled,
-      convertHntToCurrency,
       address,
       isSecureModeEnabled,
+      isDeployModeEnabled,
       permanentPaymentAddress,
     ] = await Promise.all([
       getSecureItem('accountBackedUp'),
@@ -70,13 +71,15 @@ export const restoreUser = createAsyncThunk<Restore>(
       getSecureItem('requirePinForPayment'),
       getSecureItem('authInterval'),
       getSecureItem('hapticDisabled'),
-      getSecureItem('convertHntToCurrency'),
       getSecureItem('address'),
       getSecureItem('secureModeEnabled'),
+      getSecureItem('deployModeEnabled'),
       getSecureItem('permanentPaymentAddress'),
     ])
+
     if (isBackedUp && address) {
       OneSignal.sendTags({ address })
+      Logger.setUser(address)
     }
     return {
       isBackedUp,
@@ -87,10 +90,10 @@ export const restoreUser = createAsyncThunk<Restore>(
         : Intervals.IMMEDIATELY,
       isLocked: isPinRequired,
       isHapticDisabled,
-      convertHntToCurrency,
       isSecureModeEnabled,
+      isDeployModeEnabled,
       permanentPaymentAddress,
-    }
+    } as Restore
   },
 )
 
@@ -117,9 +120,9 @@ const appSlice = createSlice({
       state.isPinRequiredForPayment = action.payload
       setSecureItem('requirePinForPayment', action.payload)
     },
-    enableSecureMode: (state, action: PayloadAction<boolean>) => {
-      state.isSecureModeEnabled = action.payload
-      setSecureItem('secureModeEnabled', action.payload)
+    enableDeployMode: (state, action: PayloadAction<boolean>) => {
+      state.isDeployModeEnabled = action.payload
+      setSecureItem('deployModeEnabled', action.payload)
     },
     setPermanentPaymentAddress: (state, action: PayloadAction<string>) => {
       state.permanentPaymentAddress = action.payload
@@ -128,14 +131,6 @@ const appSlice = createSlice({
     updateHapticEnabled: (state, action: PayloadAction<boolean>) => {
       state.isHapticDisabled = action.payload
       setSecureItem('hapticDisabled', action.payload)
-    },
-    toggleConvertHntToCurrency: (state) => {
-      state.convertHntToCurrency = !state.convertHntToCurrency
-      setSecureItem('convertHntToCurrency', state.convertHntToCurrency)
-    },
-    updateConvertHntToCurrency: (state, action: PayloadAction<boolean>) => {
-      state.convertHntToCurrency = action.payload
-      setSecureItem('convertHntToCurrency', action.payload)
     },
     updateAuthInterval: (state, action: PayloadAction<number>) => {
       state.authInterval = action.payload
@@ -162,7 +157,7 @@ const appSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(restoreUser.fulfilled, (state, { payload }) => {
+    builder.addCase(restoreAppSettings.fulfilled, (state, { payload }) => {
       return { ...state, ...payload, isRestored: true }
     })
   },

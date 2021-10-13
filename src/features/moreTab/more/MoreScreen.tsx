@@ -26,22 +26,28 @@ import {
 import MoreListItem, { MoreListItemType } from './MoreListItem'
 import useAuthIntervals from './useAuthIntervals'
 import { useSpacing } from '../../../theme/themeHooks'
-import accountSlice from '../../../store/account/accountSlice'
+import accountSlice, {
+  fetchAccountSettings,
+  updateFleetModeEnabled,
+  updateSetting,
+} from '../../../store/account/accountSlice'
 import connectedHotspotSlice from '../../../store/connectedHotspot/connectedHotspotSlice'
-import heliumDataSlice from '../../../store/helium/heliumDataSlice'
 import Security from '../../../assets/images/security.svg'
 import Learn from '../../../assets/images/learn.svg'
 import Account from '../../../assets/images/account.svg'
 import Box from '../../../components/Box'
 import DiscordItem from './DiscordItem'
 import AppInfoItem from './AppInfoItem'
-import SecureModeModal from './SecureModeModal'
+import DeployModeModal from './DeployModeModal'
 import activitySlice from '../../../store/activity/activitySlice'
 import hotspotsSlice from '../../../store/hotspots/hotspotsSlice'
 import { useLanguageContext } from '../../../providers/LanguageProvider'
 import { EXPLORER_BASE_URL } from '../../../utils/config'
 import { SUPPORTED_LANGUAGUES } from '../../../utils/i18n/i18nTypes'
 import Articles from '../../../constants/articles'
+import useAlert from '../../../utils/useAlert'
+import validatorsSlice from '../../../store/validators/validatorsSlice'
+import { SUPPORTED_CURRENCIES } from '../../../utils/useCurrency'
 
 type Route = RouteProp<RootStackParamList & MoreStackParamList, 'MoreScreen'>
 const MoreScreen = () => {
@@ -50,14 +56,30 @@ const MoreScreen = () => {
   const dispatch = useAppDispatch()
   const { version } = useDevice()
   const app = useSelector((state: RootState) => state.app, isEqual)
+  const showHiddenHotspots = useSelector(
+    (state: RootState) => state.account.settings.showHiddenHotspots,
+  )
+  const account = useSelector((state: RootState) => state.account, isEqual)
+  const fleetModeLowerLimit = useSelector(
+    (state: RootState) => state.features.fleetModeLowerLimit,
+  )
   const authIntervals = useAuthIntervals()
+  const { showOKCancelAlert } = useAlert()
   const { changeLanguage, language } = useLanguageContext()
   const navigation = useNavigation<MoreNavigationProp & RootNavigationProp>()
   const spacing = useSpacing()
   const [
-    showingSecureModeConfirmation,
-    setShowingSecureModeConfirmation,
+    showingDeployModeConfirmation,
+    setShowingDeployModeConfirmation,
   ] = useState(false)
+
+  useEffect(
+    () =>
+      navigation.addListener('focus', () => {
+        dispatch(fetchAccountSettings())
+      }),
+    [dispatch, navigation],
+  )
 
   useEffect(() => {
     if (!params?.pinVerifiedFor) return
@@ -123,13 +145,49 @@ const MoreScreen = () => {
 
   const handleConvertHntToCurrency = useCallback(() => {
     dispatch(
-      appSlice.actions.updateConvertHntToCurrency(!app.convertHntToCurrency),
+      updateSetting({
+        key: 'convertHntToCurrency',
+        value: !account.settings.convertHntToCurrency,
+      }),
     )
-  }, [dispatch, app.convertHntToCurrency])
+  }, [dispatch, account.settings.convertHntToCurrency])
 
   const handleHaptic = useCallback(() => {
     dispatch(appSlice.actions.updateHapticEnabled(!app.isHapticDisabled))
   }, [dispatch, app.isHapticDisabled])
+
+  const handleFleetMode = useCallback(async () => {
+    const decision = await showOKCancelAlert({
+      titleKey: account.settings.isFleetModeEnabled
+        ? 'fleetMode.disablePrompt.title'
+        : 'fleetMode.enablePrompt.title',
+      messageKey: account.settings.isFleetModeEnabled
+        ? 'fleetMode.disablePrompt.subtitle'
+        : 'fleetMode.enablePrompt.subtitle',
+      messageOptions: { lowerLimit: `${fleetModeLowerLimit}` },
+    })
+    if (!decision) return
+
+    dispatch(
+      updateFleetModeEnabled({
+        enabled: !account.settings.isFleetModeEnabled,
+      }),
+    )
+  }, [
+    account.settings.isFleetModeEnabled,
+    dispatch,
+    fleetModeLowerLimit,
+    showOKCancelAlert,
+  ])
+
+  const handleShowHiddenHotspots = useCallback(() => {
+    dispatch(
+      updateSetting({
+        key: 'showHiddenHotspots',
+        value: !showHiddenHotspots,
+      }),
+    )
+  }, [dispatch, showHiddenHotspots])
 
   const handleSignOut = useCallback(() => {
     Alert.alert(
@@ -148,8 +206,8 @@ const MoreScreen = () => {
             dispatch(accountSlice.actions.signOut())
             dispatch(activitySlice.actions.signOut())
             dispatch(hotspotsSlice.actions.signOut())
+            dispatch(validatorsSlice.actions.signOut())
             dispatch(connectedHotspotSlice.actions.signOut())
-            dispatch(heliumDataSlice.actions.signOut())
           },
         },
       ],
@@ -161,6 +219,30 @@ const MoreScreen = () => {
       changeLanguage(lng)
     },
     [changeLanguage],
+  )
+
+  const handleNetworkChange = useCallback(
+    (network: string) => {
+      dispatch(
+        updateSetting({
+          key: 'network',
+          value: network,
+        }),
+      )
+    },
+    [dispatch],
+  )
+
+  const handleCurrencyTypeChange = useCallback(
+    (currencyType: string) => {
+      dispatch(
+        updateSetting({
+          key: 'currencyType',
+          value: currencyType,
+        }),
+      )
+    },
+    [dispatch],
   )
 
   const handleIntervalSelected = useCallback(
@@ -216,21 +298,21 @@ const MoreScreen = () => {
       {
         title: t('more.sections.security.revealWords'),
         onPress: handleRevealWords,
-        disabled: app.isSecureModeEnabled,
+        disabled: app.isDeployModeEnabled,
       },
       {
-        title: t('more.sections.security.secureMode.enableButton'),
-        value: app.isSecureModeEnabled,
+        title: t('more.sections.security.deployMode.enableButton'),
+        value: app.isDeployModeEnabled,
         onToggle: () => {
-          setShowingSecureModeConfirmation(true)
+          setShowingDeployModeConfirmation(true)
         },
         renderModal: () => (
-          <SecureModeModal
-            isVisible={showingSecureModeConfirmation}
-            onClose={() => setShowingSecureModeConfirmation(false)}
+          <DeployModeModal
+            isVisible={showingDeployModeConfirmation}
+            onClose={() => setShowingDeployModeConfirmation(false)}
           />
         ),
-        disabled: app.isSecureModeEnabled,
+        disabled: app.isDeployModeEnabled,
       },
     ]
     return [
@@ -275,6 +357,31 @@ const MoreScreen = () => {
             },
           },
           {
+            title: t('more.sections.app.currency'),
+            value: account.settings.currencyType,
+            select: {
+              items: Object.keys(SUPPORTED_CURRENCIES).map((p) => {
+                return {
+                  label: `${p} ${SUPPORTED_CURRENCIES[p]}`,
+                  labelShort: p,
+                  value: p,
+                }
+              }),
+              onValueSelect: handleCurrencyTypeChange,
+            },
+          },
+          {
+            title: t('more.sections.app.network'),
+            value: account.settings.network,
+            select: {
+              items: [
+                { label: 'StakeJoy API', value: 'stakejoy' },
+                { label: 'Helium API', value: 'helium' },
+              ],
+              onValueSelect: handleNetworkChange,
+            },
+          },
+          {
             title: t('more.sections.app.enableHapticFeedback'),
             onToggle: handleHaptic,
             value: !app.isHapticDisabled,
@@ -282,7 +389,17 @@ const MoreScreen = () => {
           {
             title: t('more.sections.app.convertHntToCurrency'),
             onToggle: handleConvertHntToCurrency,
-            value: app.convertHntToCurrency,
+            value: account.settings.convertHntToCurrency,
+          },
+          {
+            title: t('more.sections.app.enableFleetMode'),
+            onToggle: handleFleetMode,
+            value: account.settings.isFleetModeEnabled,
+          },
+          {
+            title: t('more.sections.app.showHiddenHotspots'),
+            onToggle: handleShowHiddenHotspots,
+            value: showHiddenHotspots,
           },
           {
             title: t('more.sections.app.signOut'),
@@ -297,24 +414,31 @@ const MoreScreen = () => {
     t,
     handlePinRequired,
     app.isPinRequired,
+    app.isDeployModeEnabled,
     app.isHapticDisabled,
-    app.convertHntToCurrency,
     app.authInterval,
     app.isPinRequiredForPayment,
-    app.isSecureModeEnabled,
-    showingSecureModeConfirmation,
-    setShowingSecureModeConfirmation,
     handleRevealWords,
     language,
     handleLanguageChange,
+    account.settings.currencyType,
+    account.settings.network,
+    account.settings.convertHntToCurrency,
+    account.settings.isFleetModeEnabled,
+    handleCurrencyTypeChange,
+    handleNetworkChange,
     handleHaptic,
     handleConvertHntToCurrency,
+    handleFleetMode,
+    handleShowHiddenHotspots,
+    showHiddenHotspots,
     handleSignOut,
     version,
     authIntervals,
     handleIntervalSelected,
     handleResetPin,
     handlePinRequiredForPayment,
+    showingDeployModeConfirmation,
   ])
 
   const contentContainer = useMemo(

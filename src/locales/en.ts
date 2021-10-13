@@ -111,6 +111,7 @@ export default {
     go_to_account: 'Go to My Account',
     go_to_settings: 'Go to Settings',
     hotspot: 'Hotspot',
+    validator: 'Validator',
     location: 'Location',
     unable_to_get_location: 'We were unable to get your location',
     location_blocked:
@@ -147,6 +148,9 @@ export default {
     seconds_plural: '{{count}} seconds',
     meters: '{{distance}}m',
     kilometers: '{{distance}}km',
+    owner: 'Owner',
+    one: 'one',
+    swipe_to_confirm: 'Swipe to Confirm',
   },
   hotspot_setup: {
     selection: {
@@ -337,8 +341,9 @@ export default {
       assert_loc_error_no_change_title: 'Location Unchanged',
       assert_loc_error_no_change_body:
         'The Hotspot location has not changed. Drag the pin to a different location and try again.',
-      no_onboarding_key_title: 'No onboarding key found',
-      no_onboarding_key_message: 'Would you like to try again?',
+      no_onboarding_key_title: 'Hotspot not found on Onboarding Server',
+      no_onboarding_key_message:
+        'Unable to add Hotspot. Please contact your Hotspot manufacturer for next steps.',
     },
     enable_location: {
       title: 'Set Hotspot\nLocation',
@@ -441,7 +446,7 @@ export default {
       title: 'Welcome to\nyour wallet',
       subtitle: 'Your balance is zero.',
       description:
-        'You can send HNT to the below address/QR or deploy a Hotspot to start learning.',
+        'You can send HNT to the below address/QR or deploy a Hotspot to start earning.',
     },
     title: 'My Wallet',
     copiedToClipboard: 'Copied {{address}} to clipboard',
@@ -467,6 +472,7 @@ export default {
     },
   },
   send: {
+    not_valid_address: 'Not a valid Helium Wallet Address.',
     title: {
       payment: 'Send HNT',
       dcBurn: 'Burn HNT',
@@ -507,6 +513,7 @@ export default {
     qrInfo: 'QR INFO',
     error: 'There was an error submitting this transaction. Please try again.',
     secureModePaymentsDisabled: 'Payments are disabled in Secure Mode',
+    deployModePaymentsDisabled: 'Payments are disabled in Deploy Mode',
     hotspot_label: 'Hotspot',
     last_activity: 'LAST REPORTED ACTIVITY: {{activity}}',
     label_error: 'You do not have enough HNT in your account.',
@@ -523,6 +530,13 @@ export default {
       view_description:
         'Share your QR Code to deposit or receive HNT from others.',
       learn_more: 'Learn More',
+      parse_code_error: 'Unable to parse QR code',
+      invalid_hotspot_address:
+        'Hotspot Address in QR code is missing or invalid.',
+      invalid_sender_address:
+        'Sender Address in QR code is not a valid wallet account address.',
+      mismatched_sender_address:
+        'Sender Address in QR code does not match wallet account address. Addresses must match in order to proceed.',
     },
     send_max_fee: {
       error_title: 'Send Max Error',
@@ -548,13 +562,19 @@ export default {
           after_4_hr: 'After 4 hours',
         },
         revealWords: 'Reveal Words',
-        secureMode: {
-          title: 'Secure Mode',
-          enableButton: 'Enable Secure Mode',
-          description:
-            'Activating secure mode will remove the ability to reveal the 12 words for this account. You will still be able to add hotspots and update their locations, and send funds to one whitelisted address if provided.',
-          warning: 'You must log out to disable this feature.',
-          addressLabel: 'Permanent recipient address',
+        deployMode: {
+          title: 'Deploy Mode',
+          subtitle:
+            'This mode adds extra protection to your wallet, restricting some app features.',
+          inDeployMode: 'In Deploy Mode:',
+          cantViewWords: "Can't view your 12 secure words",
+          cantTransferHotspots: "Can't transfer Hotspots from this account",
+          canOnlySendFunds: 'Can only send funds to',
+          otherAccount: 'other specified account',
+          enableButton: 'Enable Deploy Mode',
+          disableInstructions:
+            'In order to disable this feature, you will have to log out. Remember to write down all 12 words now.',
+          addressLabel: 'Allowed Account Address...',
         },
       },
       learn: {
@@ -570,8 +590,12 @@ export default {
       app: {
         title: 'App',
         enableHapticFeedback: 'Enable Haptic Feedback',
+        enableFleetMode: 'Enable Fleet Mode',
+        showHiddenHotspots: 'Show Hidden Hotspots',
         convertHntToCurrency: 'Convert HNT to Currency',
         language: 'Language',
+        currency: 'Currency',
+        network: 'Choose API Provider',
         signOut: 'Sign Out',
         signOutAlert: {
           title: 'Warning!',
@@ -598,10 +622,20 @@ export default {
     owned: {
       title: 'My Hotspots',
       title_no_hotspots: 'Hotspots',
-      reward_summary:
+      hotspot_plural: '{{count}} Hotspots',
+      hotspot: 'Hotspot',
+      validator_plural: '{{count}} Validators',
+      validator: 'Validator',
+      reward_hotspot_summary:
         'Your Hotspot has earned\n{{hntAmount}} in the past 24 hours.',
-      reward_summary_plural:
+      reward_hotspot_summary_plural:
         'Your {{count}} Hotspots have earned\n{{hntAmount}} in the past 24 hours.',
+      reward_validator_summary:
+        'Your Validator has earned\n{{hntAmount}} in the past 24 hours.',
+      reward_validator_summary_plural:
+        'Your {{count}} Validators have earned\n{{hntAmount}} in the past 24 hours.',
+      reward_hotspot_and_validator_summary:
+        'Your {{hotspot}} and \n{{validator}} have earned\n{{hntAmount}} in the past 24 hours.',
       your_hotspots: 'Your Hotspots',
       filter: {
         new: 'Newest Hotspots',
@@ -609,20 +643,38 @@ export default {
         earn: 'Top Earning Hotspots',
         offline: 'Offline Hotspots',
         followed: 'Followed Hotspots',
+        followedValidators: 'Followed Validators',
+        validators: 'Validators',
+        unasserted: 'Unasserted Hotspots',
       },
     },
     search: {
       title: 'Hotspot Search',
+      network: 'Network\nSearch',
       my_hotspots: 'My Hotspots',
       all_hotspots: 'All Hotspots',
       placeholder: 'Search...',
       recent_searches: 'Recent Searches',
       tips: 'Search Tips',
       tips_body:
-        'Try typing a Hotspot Name (e.g. silly-animal-name) or a place name (e.g. New York City).\n\nNote: Hotspots added within the last 10 minutes may not appear.',
+        'Try typing a Hotspot or Validator Name (e.g. silly-animal-name) or a place name (e.g. New York City).\n\nNote: Hotspots and Validators added within the last 10 minutes may not appear.',
     },
     empty: {
-      body: "You haven't added or followed any Hotspots yet.",
+      title: 'Add a\nHelium Miner',
+      body: 'There are two types of miner\non the Helium Network:',
+      search: 'Search',
+      info: 'Info',
+      hotspots: {
+        title: 'Hotspots',
+        body:
+          'Hardware miners that participate in Proof-of-Coverage and mine HNT.',
+        add: 'Add Hotspot',
+      },
+      validators: {
+        title: 'Validators',
+        body:
+          'Validator nodes secure the Helium network by verifying transactions and adding blocks in Consensus Groups.',
+      },
       failed:
         'We’re having problems fetching your Hotspots due to an API or network outage. Please try again later.',
     },
@@ -657,10 +709,40 @@ export default {
       subtitle:
         'Here you’ll get news, updates and alerts about your Hotspots and The People’s Network.',
     },
+    helium_updates_empty: {
+      title: 'There are no Helium updates',
+      subtitle: "Stay tuned for upcoming news about The People's Network.",
+    },
+    hotspot_update_empty: {
+      title: 'There are no Hotspot notifications',
+      subtitle:
+        "Here is where you'll be notified when your Hotspot falls offline or comes back online.",
+    },
+    transfers_empty: {
+      title: 'There are no Hotspot Transfers',
+      subtitle:
+        "Here is where you'll find pending Hotspot transfer notifications.",
+    },
+    earnings_empty: {
+      title: 'No weekly earnings to report',
+      subtitle:
+        "Here is where you'll find weekly earnings notifications from your owned Hotspots.",
+    },
+    payment_empty: {
+      title: 'No payment transactions',
+      subtitle: 'Payment transaction notifications will appear here.',
+    },
+    failed_empty: {
+      title: 'No failed transactions',
+      subtitle: 'Any failed transaction notification will appear here.',
+    },
+    all: 'All Messages',
     hotspot_updates: 'Hotspot Updates',
+    hotspot_transfers: 'Hotspot Transfers',
     helium_updates: 'Helium Updates',
     helium_update: 'Helium Update',
     weekly_earnings: 'Weekly Earnings',
+    payment_notifications: 'Payment Notifications',
     failure_notifications: 'Failure Notifications',
   },
   transactions: {
@@ -706,6 +788,19 @@ export default {
       title: 'Update Hotspot',
       subtitle: 'Hotspot location or antenna details.',
     },
+    visibility_on: {
+      title: 'Show Hotspot',
+      subtitle: 'Makes the Hotspot visible in the app.',
+    },
+    visibility_off: {
+      title: 'Hide Hotspot',
+      subtitle: 'Hides the Hotspot in the app.',
+    },
+    visibility_popup: {
+      title: 'Hide Hotspot',
+      message:
+        'Hotspot will be hidden from view in the app but stays linked to your account.\n\nTo view Hidden Hotspots and unhide them, go to Settings.',
+    },
     discovery: {
       title: 'Discovery Mode',
       subtitle: 'Identify ideal Hotspot placement.',
@@ -722,6 +817,8 @@ export default {
     },
     diagnostics: {
       title: 'Diagnostic Report',
+      desc_info:
+        "Please add more details to the issue you're experiencing below",
       no_hotspots: 'No Hotspots Found',
       scan_again: 'Scan again',
       generating_report: 'Generating Report',
@@ -748,6 +845,11 @@ export default {
       eth_mac: 'Ethernet MAC',
       nat_type: 'NAT Type',
       ip: 'IP Address',
+      disk: 'Disk',
+      disk_read_only: 'Read-Only',
+      disk_no_data: 'No Data Available',
+      disk_read_only_instructions:
+        'Contact your Manufacturer for a replacement. Hotspot unable to sync due to hardware failure.',
       report_generated: 'Report Generated',
       send_to_support: 'Send Report to Support',
       help_link: 'Read more for possible solutions',
@@ -798,6 +900,36 @@ export default {
         'Unable to update Hotspot while a transaction is pending. Please try again later.',
     },
   },
+  validator_details: {
+    overview: 'Overview',
+    penalties: 'Penalties',
+    consensus_groups: 'Consensus Groups',
+    consensus_group: 'Consensus Group',
+    consensus_group_title: 'Consensus\nGroup',
+    elected_count: 'Currently Elected Validators ({{count}})',
+    earnings_desc: '30d Earnings',
+    penalty_desc: 'Penalty Score',
+    consensus_desc: 'Participated in Consensus',
+    in_consensus: ' In Consensus Group',
+    time_range: 'Time Range',
+    time_range_24_hours: '24H',
+    time_range_14_days: '14D',
+    time_range_30_days: '30D',
+    in_cooldown_mode: 'In Cooldown Mode',
+    cooldown_blocks_left: '{{blocks}} Blocks Left',
+    status_online: 'Online',
+    status_offline: 'Offline',
+    current_block_height: 'Current Block Height: {{blockHeight}}',
+    penalty: 'Penalty',
+    lifetime_consensus: 'Lifetime Consensus',
+    stake_status: 'Stake Status',
+    performance: 'Performance Penalty',
+    tenure: 'Tenure Penalty',
+    block: 'Block {{height}}',
+    block_elected: 'Block Elected {{block}}',
+    version_desc: 'Validator Version',
+    heartbeat_desc: 'Blocks since the last heartbeat transaction',
+  },
   hotspot_details: {
     checklist: 'Progress',
     title: 'Hotspot Details',
@@ -816,6 +948,7 @@ export default {
     no_location: 'No Location',
     picker_options: ['24H', '14D', '30D'],
     picker_prompt: 'Select Range',
+    status_data_only: 'Data-Only',
     status_online: 'Online',
     status_offline: 'Needs Attention',
     status_syncing: 'Syncing',
@@ -837,6 +970,11 @@ export default {
     no_location_body: 'Pair with the Hotspot to begin.',
     percent_synced: '{{percent}}% Synced',
     starting_sync: 'Starting Sync...',
+    data_only_prompt: {
+      title: 'Data-Only Hotspot Explained',
+      message:
+        'These Hotspots earn HNT for transmitting data packets from sensors.\n\nThey do not affect transmit scales and do not affect Hotspot Proof-of-Coverage earnings of nearby Hotspots.',
+    },
     relay_prompt: {
       title: 'Hotspot is Relayed',
       message:
@@ -884,6 +1022,9 @@ export default {
     fine_print:
       'Hotspot will transfer once the buyer accepts and completes the transaction.',
     notification_button: 'View Transaction',
+    deployModeTransferDisableTitle: 'Transfer Hotspot Disabled',
+    deployModeTransferDisabled:
+      'Transfer Hotspot is disabled while in Deploy Mode.',
     cancel: {
       button_title: 'Transfer Pending. Tap to Cancel.',
       failed_alert_title: 'Unable to Cancel Transfer',
@@ -925,9 +1066,11 @@ export default {
     blocks: {
       not:
         'Hotspots must be fully synced before they can mine. New Hotspots can take up to 96 hours to sync.',
-      full: 'Hotspot is fully synced.',
-      partial:
-        'Hotspot is syncing with the Helium blockchain and is roughly {{percent}}% synced.',
+      full: 'Hotspot fully synced.',
+      partial: 'Hotspot syncing with the Helium blockchain.',
+      full_with_date: 'Hotspot fully synced as of {{timeAgo}}.',
+      partial_with_date:
+        'Hotspot syncing with the Helium blockchain as of {{timeAgo}}.',
       title: 'Sync to Blockchain',
     },
     status: {
@@ -940,7 +1083,7 @@ export default {
       success: 'Hotspot issued a challenge {{count}} block ago.',
       success_plural: 'Hotspot issued a challenge {{count}} blocks ago.',
       fail:
-        "Hotspot hasn't issued a challenge yet. Hotspots create challenges automatically every 480 blocks, or approximately 8 hours.",
+        "Hotspot hasn't issued a challenge yet. Hotspots create challenges automatically every 240 blocks, or approximately 4 hours.",
       title: 'Create a Challenge',
     },
     challenge_witness: {
@@ -961,7 +1104,7 @@ export default {
       success_plural:
         'Hotspot last participated in a challenge {{count}} blocks ago.',
       fail:
-        'Online Hotspots are challenged every 480 blocks (or 8 hours). Hotspots send a Beacon (also known as a challenge) and if other Hotspot witness, they pass.',
+        'Online Hotspots are challenged every 240 blocks (or 4 hours). Hotspots send a Beacon (also known as a challenge) and if other Hotspot witness, they pass.',
       title: 'Pass a Challenge',
     },
     data_transfer: {
@@ -971,7 +1114,7 @@ export default {
       title: 'Transfer Data',
     },
     auto: 'AUTOMATIC',
-    auto_hours: 'EVERY 8 HOURS',
+    auto_hours: 'EVERY 6 HOURS',
     auto_refresh: 'REFRESHES OFTEN',
     complete: 'COMPLETE',
     online: 'ONLINE',
@@ -997,11 +1140,6 @@ export default {
       title: 'Unable to initiate Discovery Mode',
       message:
         'Hotspot may be behind a relay and is not responding. Check your router settings and try again.',
-    },
-    instability_warning: {
-      title: 'Discovery Mode Performance',
-      message:
-        'The backend service for Discovery Mode is experiencing performance issues and users may see inconsistent results.',
     },
     begin: {
       title: 'Discovery Mode',
@@ -1090,4 +1228,23 @@ export default {
   statusBanner: {
     description: 'Last updated {{date}}. Tap for info.',
   },
+  fleetMode: {
+    autoEnablePrompt: {
+      title: 'Fleet Mode Enabled',
+      subtitle:
+        'Fleet Mode Fleet Mode has been enabled for this account to improve app performance.',
+    },
+    enablePrompt: {
+      title: 'Enable Fleet Mode',
+      subtitle:
+        'Fleet Mode optimizes app performance by reducing the amount of data the app fetches but does not impact onboarding, setting location, or diagnostics. Fleet Mode is recommended for accounts with more than {{lowerLimit}} Hotspots.',
+    },
+    disablePrompt: {
+      title: 'Turning Off Fleet Mode',
+      subtitle:
+        'Turning off Fleet Mode may negatively affect App performance, resulting in your ability to interact with the App. We do not recommend turning off Fleet Mode for users with more than {{lowerLimit}} Hotspots in an account.',
+    },
+  },
+  explore_hotspots: 'Explore Hotspots',
+  explore_validators: 'Explore Validators',
 }
