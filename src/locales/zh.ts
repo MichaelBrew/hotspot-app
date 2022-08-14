@@ -433,7 +433,6 @@ export default {
     button: {
       payment: '发送 HNT',
       dcBurn: '烧 HNT 币',
-      transfer_request: '发送转让请求',
       transfer_complete: '完成转让',
     },
     qrInfo: 'QR 信息',
@@ -442,7 +441,6 @@ export default {
     hotspot_label: 'Hotspot',
     last_activity: '上次报告的活动: {{activity}}',
     label_error: '您的帐户 HNT 余额不足。',
-    stale_error: 'Hotspot 在最近的 {{blocks}} 个区块没有发生信标或见证活动。',
     scan: {
       title: '二维码使用方式',
       send: '发送 HNT',
@@ -538,9 +536,6 @@ export default {
     owned: {
       title: '我的 Hotspot',
       title_no_hotspots: 'Hotspot',
-      reward_summary: '您的 Hotspot 过去 24 小时共赚取\n{{hntAmount}}。',
-      reward_summary_plural:
-        '您的 {{count}} 个 Hotspot 过去 24 小时共赚取\n{{hntAmount}}。',
       your_hotspots: '您的 Hotspot',
       filter: {
         new: '最新的 Hotspot',
@@ -736,16 +731,12 @@ export default {
     picker_title: '过去',
     overview: '概览',
     no_location: '无位置',
-    picker_options: ['过去 24 小时', '过去 14 天', '过去 30 天'],
+    picker_options: { 7: '过去 7 天', 14: '过去 14 天', 30: '지난 30일' },
     picker_prompt: '选择范围',
     status_online: '在线',
     status_offline: '请注意',
-    status_syncing: '正在同步',
-    relayed: '已中转',
     status_prompt_online: {
       title: 'Hotspot 处于在线同步状态。',
-      subtitle_active: '状态:区块 {{hotspotBlock}} ({{currentBlock}})',
-      subtitle_starting: '开始同步...',
     },
     status_prompt_offline: {
       title: 'Hotspot 离线且未同步。',
@@ -757,13 +748,6 @@ export default {
     },
     no_location_title: '没有声明位置',
     no_location_body: 'Hotspot 配对开始。',
-    percent_synced: '{{percent}}% 已同步',
-    starting_sync: '开始同步...',
-    relay_prompt: {
-      title: 'Hotspot 已中转',
-      message:
-        'Hotspot 连接正通过网络中另一个 Hotspot 进行中转，可能会影响挖矿。要解除 Hotspot 中转，请访问故障排除指南。',
-    },
   },
   transfer: {
     title: '转让 Hotspot',
@@ -785,7 +769,6 @@ export default {
       '无法完成此转让。请确认您是授权买家，或联系卖家了解更多信息。',
     canceled_alert_title: '转让已取消',
     canceled_alert_body: '此转让不再处于活动状态。请联系卖家了解更多信息。',
-    fine_print: '一旦买家接受并完成交易，Hotspot 即被转让。',
     notification_button: '查看交易',
     deployModeTransferDisableTitle: '传输热点已禁用',
     deployModeTransferDisabled: '在部署模式下禁用传输热点。',
@@ -887,11 +870,6 @@ export default {
     offline_prompt: {
       title: '无法开启发现模式',
       message: 'Hotspot 离线，请联网并重试。',
-    },
-    relay_prompt: {
-      title: 'Hotspot 已中转',
-      message:
-        '处于发现模式下的中转 Hotspot 可能无法收到邻近 Hotspot 的响应。要解除 Hotspot 中转，请访问故障排除指南。',
     },
     session_error_prompt: {
       title: '无法开启发现模式',

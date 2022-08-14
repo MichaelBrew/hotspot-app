@@ -1,3 +1,4 @@
+import { upperFirst } from 'lodash'
 import PantherX from './panther'
 import bobcat from './bobcat'
 import cotx from './cotx'
@@ -8,7 +9,7 @@ import helium from './helium'
 import linxdot from './linxdot'
 import longAP from './longAP'
 import nebra from './nebra'
-import rak from './rak'
+import rak, { rakWireless } from './rak'
 import risinghf from './risinghf'
 import sensecap from './sensecap'
 import syncrobit from './syncrobit'
@@ -18,10 +19,16 @@ import pisces from './pisces'
 import controllino from './controllino'
 import freedomfi from './freedomfi'
 import hummingbird from './hummingbird'
+import merryIoT from './merryIoT'
+import milesight from './milesight'
+import midas from './midas'
+import deepernetwork from './deepernetwork'
+import dragino from './dragino'
 import { LangType, supportedLangs } from '../utils/i18n/i18nTypes'
 import { HotspotMakerLangField } from './hotspotMakerTypes'
+import { MakerType } from './makerType'
 
-export const Makers: Record<string, { id: number; supportEmail: string }> = {
+export const Makers: Record<string, MakerType> = {
   PantherX,
   bobcat,
   cotx,
@@ -32,6 +39,7 @@ export const Makers: Record<string, { id: number; supportEmail: string }> = {
   longAP,
   nebra,
   rak,
+  rakWireless,
   risinghf,
   sensecap,
   syncrobit,
@@ -41,6 +49,11 @@ export const Makers: Record<string, { id: number; supportEmail: string }> = {
   controllino,
   freedomfi,
   hummingbird,
+  merryIoT,
+  milesight,
+  midas,
+  deepernetwork,
+  dragino,
 }
 
 export const AntennaModels = {
@@ -64,6 +77,11 @@ export const AntennaModels = {
   ...controllino.antennas,
   ...freedomfi.antennas,
   ...hummingbird.antennas,
+  ...merryIoT.antennas,
+  ...milesight.antennas,
+  ...midas.antennas,
+  ...deepernetwork.antennas,
+  ...dragino.antennas,
 }
 
 export const HotspotMakerModels = {
@@ -86,6 +104,11 @@ export const HotspotMakerModels = {
   ...controllino.hotspots,
   ...freedomfi.hotspots,
   ...hummingbird.hotspots,
+  ...merryIoT.hotspots,
+  ...milesight.hotspots,
+  ...midas.hotspots,
+  ...deepernetwork.hotspots,
+  ...dragino.hotspots,
 }
 
 export type HotspotType = keyof typeof HotspotMakerModels
@@ -124,3 +147,12 @@ export const getMakerSupportEmail = (makerId?: number): string => {
   const makerKey = Object.keys(Makers).find((m) => Makers[m].id === makerId)
   return makerKey ? Makers[makerKey].supportEmail : 'support@helium.com'
 }
+
+export const listMakers = () =>
+  Object.keys(Makers).map((makerName) => ({
+    ...Makers[makerName],
+    name: upperFirst(makerName),
+  }))
+
+export const getHotspotMaker = (hotspotType: HotspotType) =>
+  listMakers().find((m) => !!m.hotspots[hotspotType])

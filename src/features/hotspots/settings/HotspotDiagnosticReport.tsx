@@ -244,7 +244,6 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
       fw: firmware?.version || '',
       connected: diagnostics?.connected || '',
       dialable: diagnostics?.dialable || '',
-      natType: capitalize(diagnostics?.nat_type || ''),
       ip: capitalize(diagnostics?.ip || ''),
       disk: diagnostics?.disk || '',
       height: info?.height ? info.height.toLocaleString(locale) : 'Unknown',
@@ -343,6 +342,17 @@ const HotspotDiagnosticReport = ({ onFinished }: Props) => {
                 {t('generic.unavailable')}
               </Text>
             )}
+          </Box>
+
+          <Box flexDirection="row" marginBottom="s">
+            <Text variant="body2Medium" color="black" flex={1}>
+              {t('hotspot_settings.diagnostics.block_height')}
+            </Text>
+            <Text variant="body2" color="black" marginLeft="s">
+              {info?.height
+                ? info.height.toLocaleString(locale)
+                : t('generic.unavailable')}
+            </Text>
           </Box>
 
           <Box flexDirection="row">

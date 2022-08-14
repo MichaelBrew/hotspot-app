@@ -12,7 +12,6 @@
 		04B7B04F50704A1AB50E9ED2 /* Inter-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 81166484EECE40299BEB9570 /* Inter-MediumItalic.otf */; };
 		09C5A179F5234DFEA8A1BFEB /* Inter-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1B612616272949C8AF98D15A /* Inter-Black.otf */; };
 		0B74DE2CA1694927BF8B64BC /* NotoSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1007DBE6C5684F4999FA631B /* NotoSerif-Bold.ttf */; };
-		0E9226941D8EB508973B0E6A /* libPods-Helium-HeliumTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA5A5E66FD6140EE4B025D78 /* libPods-Helium-HeliumTests.a */; };
 		0F2353332F964D2DB2DEC9E9 /* Inter-ExtraBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CE29D13B8054DA5BCE755E1 /* Inter-ExtraBoldItalic.otf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -23,12 +22,11 @@
 		2E9A234A8A2048BDA978454D /* InputMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB40A7C9F9344DC7A09F6876 /* InputMono-Medium.ttf */; };
 		317C3D6FA3594073A9892514 /* Inter-V.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 241B15BCF31749CAB3CD9A6B /* Inter-V.ttf */; };
 		3650E51FFED245A1B1475936 /* Inter-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = E3B07B1489E74A128A3C96AB /* Inter-ExtraLight.otf */; };
-		41E226383CC0AC782E945B86 /* libPods-Helium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C1975BA31E007F0C711ACB /* libPods-Helium.a */; };
 		4B47FD0E054C4FC8BD171E9B /* Inter-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 27665798A13443388965B386 /* Inter-BlackItalic.otf */; };
 		4CE0E2DE494B4C38AEF7B485 /* Inter-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0525728D70943D986DF2664 /* Inter-SemiBold.otf */; };
+		4F9EFE39E523FB17199820CE /* libPods-Helium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E42FEF544D7EC4DA196E96C2 /* libPods-Helium.a */; };
 		50220074260B81B500BE34C9 /* RCTDateModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 50220073260B81B500BE34C9 /* RCTDateModule.m */; };
 		50416777003A4F49B0555192 /* InputMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A479F1315370424BA4C2BF03 /* InputMono-Light.ttf */; };
-		7201F13464FD4A1DC7B49018 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A4E97D088B70BB9403ED112 /* libPods-OneSignalNotificationServiceExtension.a */; };
 		73882C4BC2B149C8A0C6018F /* Soleil-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C0182B6E484FB54DB40C /* Soleil-SemiBold.otf */; };
 		7B8CAA0072BE46E58E542998 /* Soleil-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 898B757CCE3C47C3BEE06830 /* Soleil-Bold.ttf */; };
 		7F574B39260D4DC5A5A770C4 /* Inter-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 842A327CA15C4AEDB5A0E567 /* Inter-BoldItalic.otf */; };
@@ -37,15 +35,39 @@
 		8A545491ABE249C3ACCF3D79 /* Inter-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 574F3684C39A464FA2A7FF51 /* Inter-Bold.otf */; };
 		8DC3333BBCC94A249719A62B /* Inter-ExtraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 601B9FB2E77946869E6B9D6B /* Inter-ExtraLightItalic.otf */; };
 		92C6185DA0484FA99E23D71F /* Soleil-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8F391FD281F4727B9C1681A /* Soleil-Light.otf */; };
+		96312B7273D51AF24B1598D2 /* libPods-Helium-HeliumTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A72051727B457342FC5B510 /* libPods-Helium-HeliumTests.a */; };
 		964E9C302638CD0C00CCBCCC /* bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E9C2F2638CD0C00CCBCCC /* bridge.swift */; };
+		9C95565CDA4073E9382DDAB6 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7573A5CEBF5290F082A50D /* libPods-OneSignalNotificationServiceExtension.a */; };
+		9D579E2227952EE8000EFCD5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D579E2127952EE8000EFCD5 /* WidgetKit.framework */; };
+		9D579E2427952EE8000EFCD5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D579E2327952EE8000EFCD5 /* SwiftUI.framework */; };
+		9D579E2727952EE9000EFCD5 /* HeliumBalanceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D579E2627952EE9000EFCD5 /* HeliumBalanceWidget.swift */; };
+		9D579E2A27952EEC000EFCD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D579E2927952EEC000EFCD5 /* Assets.xcassets */; };
+		9D579E2C27952EEC000EFCD5 /* HeliumWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9D579E2827952EE9000EFCD5 /* HeliumWidget.intentdefinition */; };
+		9D579E2D27952EEC000EFCD5 /* HeliumWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 9D579E2827952EE9000EFCD5 /* HeliumWidget.intentdefinition */; };
+		9D579E3027952EEC000EFCD5 /* HeliumWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9D579E2027952EE8000EFCD5 /* HeliumWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9D5D86C8279A3D9000A8B5B6 /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5BBA30279A1A9B002076AE /* WidgetKitHelper.swift */; };
+		9D72C0B22797677B004F1A00 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		9D72C0B527976CBC004F1A00 /* HeliumBalanceWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D72C0B327976C0C004F1A00 /* HeliumBalanceWidgetProvider.swift */; };
+		9D72C0B82797BDCB004F1A00 /* HeliumBalanceWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D72C0B62797BD42004F1A00 /* HeliumBalanceWidgetEntryView.swift */; };
+		9D72C0BB2797BE9F004F1A00 /* HeliumHotspotsWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D72C0B92797BE9C004F1A00 /* HeliumHotspotsWidgetView.swift */; };
+		9D72C0C02797BF04004F1A00 /* HeliumHotspotsWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D72C0BE2797BEED004F1A00 /* HeliumHotspotsWidgetProvider.swift */; };
+		9D72C0C22797C017004F1A00 /* HeliumWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D72C0C12797C017004F1A00 /* HeliumWidgetBundle.swift */; };
+		9D72C0C42797C06F004F1A00 /* HeliumHotspotsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D72C0C32797C06F004F1A00 /* HeliumHotspotsWidget.swift */; };
+		9D72C0C627991246004F1A00 /* HeliumHotspotListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D72C0C527991246004F1A00 /* HeliumHotspotListItemView.swift */; };
+		9DF7AD7F279DB89D00E7CAEC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7AD7D279DB7A100E7CAEC /* Utils.swift */; };
+		9DF7AD83279DCED000E7CAEC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9DF7AD85279DCED000E7CAEC /* Localizable.strings */; };
+		9DF7AD8A27BCA04000E7CAEC /* HeliumHotspotsWidgetNetworkCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7AD8927BCA04000E7CAEC /* HeliumHotspotsWidgetNetworkCalls.swift */; };
+		9DF7AD8C27BCA32F00E7CAEC /* HeliumBalanceWidgetNetworkCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7AD8B27BCA32F00E7CAEC /* HeliumBalanceWidgetNetworkCalls.swift */; };
 		A10E8BD929D049EDA161260D /* NotoSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF9582A476D94209AF37866B /* NotoSerif-Italic.ttf */; };
 		A42E05B8AD2D452DBA997CF2 /* Soleil-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E60DB270CEE74027B4039F4A /* Soleil-Regular.otf */; };
 		A63A7C36C9E948809F57B404 /* Inter-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E61F2B2B732547DEB1C3219F /* Inter-ExtraBold.otf */; };
 		B00ACFD501FB43A3A089F37C /* Inter-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1047DD27662496F85C8B66C /* Inter-Italic.otf */; };
 		B49CB391F0F24551BC6FBB93 /* Inter-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9863D0E9676144BB8873C9FF /* Inter-Light.otf */; };
 		BB0BE1BCD9864DCB883950E8 /* Inter-SemiBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 42F8FDE2399B4FA8B34EE3CA /* Inter-SemiBoldItalic.otf */; };
+		BC8AE2F359263CFDB1F5DAD7 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7565F29080B0AA051E97D07 /* ExpoModulesProvider.swift */; };
 		C1138FCE1DD142E093DA4395 /* Inter-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D2A1FCF497741BD8DB14DBF /* Inter-LightItalic.otf */; };
 		C7840AAA72F848BEBD73CBA8 /* InputMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1EC077532EF40BCA6430610 /* InputMono-Bold.ttf */; };
+		D03C7CF3723D24414EB8F328 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED37DC34EDED14E17A7A9033 /* ExpoModulesProvider.swift */; };
 		E723BBC12AB04A1D9CC9C7A5 /* Inter-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AEFA142C9A4E488C8FB53FDE /* Inter-Medium.otf */; };
 		EC4546F4E5CF416C9D630B0A /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F5D6ECE844F84ECABC681059 /* Inter-Regular.otf */; };
 		F6789F5F69A34F20B503AC2E /* Inter-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BE0F3C218C340DEB451FC32 /* Inter-Thin.otf */; };
@@ -60,6 +82,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = Helium;
+		};
+		9D579E2E27952EEC000EFCD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D579E1F27952EE8000EFCD5;
+			remoteInfo = HeliumWidgetExtension;
 		};
 		F8B0E21F256300AD00EB1E73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -77,6 +106,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				9D579E3027952EEC000EFCD5 /* HeliumWidgetExtension.appex in Embed App Extensions */,
 				F8B0E221256300AD00EB1E73 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -89,8 +119,6 @@
 		00E356EE1AD99517003FC87E /* HeliumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeliumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* HeliumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeliumTests.m; sourceTree = "<group>"; };
-		0C1127B9BA1FDFCCD7DA3CBB /* Pods-Helium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helium.debug.xcconfig"; path = "Target Support Files/Pods-Helium/Pods-Helium.debug.xcconfig"; sourceTree = "<group>"; };
-		0E904D2CCD7AB28A6C5B7C3A /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		1007DBE6C5684F4999FA631B /* NotoSerif-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSerif-Bold.ttf"; path = "../src/assets/fonts/NotoSerif-Bold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Helium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Helium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Helium/AppDelegate.h; sourceTree = "<group>"; };
@@ -99,10 +127,11 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Helium/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Helium/main.m; sourceTree = "<group>"; };
 		1B612616272949C8AF98D15A /* Inter-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Black.otf"; path = "../src/assets/fonts/Inter-Black.otf"; sourceTree = "<group>"; };
-		1ED42C0AD18670C2DEA530AA /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		22C1975BA31E007F0C711ACB /* libPods-Helium.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Helium.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		241B15BCF31749CAB3CD9A6B /* Inter-V.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-V.ttf"; path = "../src/assets/fonts/Inter-V.ttf"; sourceTree = "<group>"; };
 		27665798A13443388965B386 /* Inter-BlackItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-BlackItalic.otf"; path = "../src/assets/fonts/Inter-BlackItalic.otf"; sourceTree = "<group>"; };
+		2B5F4134AE433C8D64C77523 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		2D7573A5CEBF5290F082A50D /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CB5C1EB699604F1579AF8C2 /* Pods-Helium-HeliumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helium-HeliumTests.debug.xcconfig"; path = "Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3CE29D13B8054DA5BCE755E1 /* Inter-ExtraBoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraBoldItalic.otf"; path = "../src/assets/fonts/Inter-ExtraBoldItalic.otf"; sourceTree = "<group>"; };
 		42F8FDE2399B4FA8B34EE3CA /* Inter-SemiBoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBoldItalic.otf"; path = "../src/assets/fonts/Inter-SemiBoldItalic.otf"; sourceTree = "<group>"; };
 		50220072260B817100BE34C9 /* RCTDateModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTDateModule.h; sourceTree = "<group>"; };
@@ -111,35 +140,61 @@
 		5BE0F3C218C340DEB451FC32 /* Inter-Thin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Thin.otf"; path = "../src/assets/fonts/Inter-Thin.otf"; sourceTree = "<group>"; };
 		5D2A1FCF497741BD8DB14DBF /* Inter-LightItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-LightItalic.otf"; path = "../src/assets/fonts/Inter-LightItalic.otf"; sourceTree = "<group>"; };
 		601B9FB2E77946869E6B9D6B /* Inter-ExtraLightItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraLightItalic.otf"; path = "../src/assets/fonts/Inter-ExtraLightItalic.otf"; sourceTree = "<group>"; };
-		6A4E97D088B70BB9403ED112 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6EDEC31FA02CF0C8C17E4116 /* Pods-Helium-HeliumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helium-HeliumTests.debug.xcconfig"; path = "Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		712EEC322CBDB8FED5C8DEDB /* Pods-Helium-HeliumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helium-HeliumTests.release.xcconfig"; path = "Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests.release.xcconfig"; sourceTree = "<group>"; };
+		755F5AEF3C155D543F1DF6DD /* Pods-Helium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helium.release.xcconfig"; path = "Target Support Files/Pods-Helium/Pods-Helium.release.xcconfig"; sourceTree = "<group>"; };
+		7A72051727B457342FC5B510 /* libPods-Helium-HeliumTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Helium-HeliumTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE3C0182B6E484FB54DB40C /* Soleil-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Soleil-SemiBold.otf"; path = "../src/assets/fonts/Soleil-SemiBold.otf"; sourceTree = "<group>"; };
 		81166484EECE40299BEB9570 /* Inter-MediumItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-MediumItalic.otf"; path = "../src/assets/fonts/Inter-MediumItalic.otf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Helium/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842A327CA15C4AEDB5A0E567 /* Inter-BoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-BoldItalic.otf"; path = "../src/assets/fonts/Inter-BoldItalic.otf"; sourceTree = "<group>"; };
 		898B757CCE3C47C3BEE06830 /* Soleil-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Soleil-Bold.ttf"; path = "../src/assets/fonts/Soleil-Bold.ttf"; sourceTree = "<group>"; };
 		8CF7CB13CCE24F928D25FB7F /* NotoSerif-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSerif-Regular.ttf"; path = "../src/assets/fonts/NotoSerif-Regular.ttf"; sourceTree = "<group>"; };
+		95CD4A187085862594C8E317 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		964E9C2E2638CD0B00CCBCCC /* Helium-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Helium-Bridging-Header.h"; sourceTree = "<group>"; };
 		964E9C2F2638CD0C00CCBCCC /* bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bridge.swift; sourceTree = "<group>"; };
+		96C64BDB27EBF09400B70B24 /* HeliumWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HeliumWidgetExtension.entitlements; sourceTree = "<group>"; };
 		9863D0E9676144BB8873C9FF /* Inter-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Light.otf"; path = "../src/assets/fonts/Inter-Light.otf"; sourceTree = "<group>"; };
+		9D579E2027952EE8000EFCD5 /* HeliumWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HeliumWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D579E2127952EE8000EFCD5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		9D579E2327952EE8000EFCD5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		9D579E2627952EE9000EFCD5 /* HeliumBalanceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumBalanceWidget.swift; sourceTree = "<group>"; };
+		9D579E2827952EE9000EFCD5 /* HeliumWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = HeliumWidget.intentdefinition; sourceTree = "<group>"; };
+		9D579E2927952EEC000EFCD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9D579E2B27952EEC000EFCD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D5BBA30279A1A9B002076AE /* WidgetKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetKitHelper.swift; sourceTree = "<group>"; };
+		9D72C0B327976C0C004F1A00 /* HeliumBalanceWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumBalanceWidgetProvider.swift; sourceTree = "<group>"; };
+		9D72C0B62797BD42004F1A00 /* HeliumBalanceWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumBalanceWidgetEntryView.swift; sourceTree = "<group>"; };
+		9D72C0B92797BE9C004F1A00 /* HeliumHotspotsWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumHotspotsWidgetView.swift; sourceTree = "<group>"; };
+		9D72C0BE2797BEED004F1A00 /* HeliumHotspotsWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumHotspotsWidgetProvider.swift; sourceTree = "<group>"; };
+		9D72C0C12797C017004F1A00 /* HeliumWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumWidgetBundle.swift; sourceTree = "<group>"; };
+		9D72C0C32797C06F004F1A00 /* HeliumHotspotsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumHotspotsWidget.swift; sourceTree = "<group>"; };
+		9D72C0C527991246004F1A00 /* HeliumHotspotListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumHotspotListItemView.swift; sourceTree = "<group>"; };
+		9DF7AD7D279DB7A100E7CAEC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		9DF7AD84279DCED000E7CAEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9DF7AD86279DCEE500E7CAEC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9DF7AD87279DCEE700E7CAEC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9DF7AD88279DE53000E7CAEC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9DF7AD8927BCA04000E7CAEC /* HeliumHotspotsWidgetNetworkCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumHotspotsWidgetNetworkCalls.swift; sourceTree = "<group>"; };
+		9DF7AD8B27BCA32F00E7CAEC /* HeliumBalanceWidgetNetworkCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumBalanceWidgetNetworkCalls.swift; sourceTree = "<group>"; };
 		9EB90AF3A0FA454484F833EB /* NotoSerif-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSerif-BoldItalic.ttf"; path = "../src/assets/fonts/NotoSerif-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A07D7D3FE6559D874629BF61 /* Pods-Helium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helium.debug.xcconfig"; path = "Target Support Files/Pods-Helium/Pods-Helium.debug.xcconfig"; sourceTree = "<group>"; };
 		A479F1315370424BA4C2BF03 /* InputMono-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "InputMono-Light.ttf"; path = "../src/assets/fonts/InputMono-Light.ttf"; sourceTree = "<group>"; };
 		AEFA142C9A4E488C8FB53FDE /* Inter-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.otf"; path = "../src/assets/fonts/Inter-Medium.otf"; sourceTree = "<group>"; };
 		BF9582A476D94209AF37866B /* NotoSerif-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSerif-Italic.ttf"; path = "../src/assets/fonts/NotoSerif-Italic.ttf"; sourceTree = "<group>"; };
 		C0525728D70943D986DF2664 /* Inter-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.otf"; path = "../src/assets/fonts/Inter-SemiBold.otf"; sourceTree = "<group>"; };
-		C6D26845385ABC05CF2EBAB8 /* Pods-Helium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helium.release.xcconfig"; path = "Target Support Files/Pods-Helium/Pods-Helium.release.xcconfig"; sourceTree = "<group>"; };
 		C7BF43D0CDD04C61BC626EBC /* InputMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "InputMono-Regular.ttf"; path = "../src/assets/fonts/InputMono-Regular.ttf"; sourceTree = "<group>"; };
-		CA5A5E66FD6140EE4B025D78 /* libPods-Helium-HeliumTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Helium-HeliumTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1EC077532EF40BCA6430610 /* InputMono-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "InputMono-Bold.ttf"; path = "../src/assets/fonts/InputMono-Bold.ttf"; sourceTree = "<group>"; };
 		D63A417472CB43E0967E4EE5 /* Soleil-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Soleil-Book.otf"; path = "../src/assets/fonts/Soleil-Book.otf"; sourceTree = "<group>"; };
 		E3B07B1489E74A128A3C96AB /* Inter-ExtraLight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraLight.otf"; path = "../src/assets/fonts/Inter-ExtraLight.otf"; sourceTree = "<group>"; };
+		E42FEF544D7EC4DA196E96C2 /* libPods-Helium.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Helium.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E60DB270CEE74027B4039F4A /* Soleil-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Soleil-Regular.otf"; path = "../src/assets/fonts/Soleil-Regular.otf"; sourceTree = "<group>"; };
 		E61F2B2B732547DEB1C3219F /* Inter-ExtraBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraBold.otf"; path = "../src/assets/fonts/Inter-ExtraBold.otf"; sourceTree = "<group>"; };
+		E7565F29080B0AA051E97D07 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Helium/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		E8F391FD281F4727B9C1681A /* Soleil-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Soleil-Light.otf"; path = "../src/assets/fonts/Soleil-Light.otf"; sourceTree = "<group>"; };
-		EAF9784B2EC76EB219FE69E9 /* Pods-Helium-HeliumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helium-HeliumTests.release.xcconfig"; path = "Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests.release.xcconfig"; sourceTree = "<group>"; };
 		EB40A7C9F9344DC7A09F6876 /* InputMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "InputMono-Medium.ttf"; path = "../src/assets/fonts/InputMono-Medium.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		ED37DC34EDED14E17A7A9033 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Helium-HeliumTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		F1047DD27662496F85C8B66C /* Inter-Italic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Italic.otf"; path = "../src/assets/fonts/Inter-Italic.otf"; sourceTree = "<group>"; };
 		F4F0344FC9EB4979AA504A35 /* Inter-ThinItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ThinItalic.otf"; path = "../src/assets/fonts/Inter-ThinItalic.otf"; sourceTree = "<group>"; };
 		F5D6ECE844F84ECABC681059 /* Inter-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.otf"; path = "../src/assets/fonts/Inter-Regular.otf"; sourceTree = "<group>"; };
@@ -155,7 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E9226941D8EB508973B0E6A /* libPods-Helium-HeliumTests.a in Frameworks */,
+				96312B7273D51AF24B1598D2 /* libPods-Helium-HeliumTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +218,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41E226383CC0AC782E945B86 /* libPods-Helium.a in Frameworks */,
+				4F9EFE39E523FB17199820CE /* libPods-Helium.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D579E1D27952EE8000EFCD5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D579E2427952EE8000EFCD5 /* SwiftUI.framework in Frameworks */,
+				9D579E2227952EE8000EFCD5 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7201F13464FD4A1DC7B49018 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
+				9C95565CDA4073E9382DDAB6 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +272,7 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				50220072260B817100BE34C9 /* RCTDateModule.h */,
 				50220073260B81B500BE34C9 /* RCTDateModule.m */,
+				9D5BBA30279A1A9B002076AE /* WidgetKitHelper.swift */,
 				964E9C2F2638CD0C00CCBCCC /* bridge.swift */,
 				964E9C2E2638CD0B00CCBCCC /* Helium-Bridging-Header.h */,
 			);
@@ -219,9 +284,11 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				22C1975BA31E007F0C711ACB /* libPods-Helium.a */,
-				CA5A5E66FD6140EE4B025D78 /* libPods-Helium-HeliumTests.a */,
-				6A4E97D088B70BB9403ED112 /* libPods-OneSignalNotificationServiceExtension.a */,
+				E42FEF544D7EC4DA196E96C2 /* libPods-Helium.a */,
+				7A72051727B457342FC5B510 /* libPods-Helium-HeliumTests.a */,
+				2D7573A5CEBF5290F082A50D /* libPods-OneSignalNotificationServiceExtension.a */,
+				9D579E2127952EE8000EFCD5 /* WidgetKit.framework */,
+				9D579E2327952EE8000EFCD5 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -265,6 +332,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		686A357C2CC4DBC6BD6972A2 /* Helium */ = {
+			isa = PBXGroup;
+			children = (
+				E7565F29080B0AA051E97D07 /* ExpoModulesProvider.swift */,
+			);
+			name = Helium;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,14 +350,17 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				96C64BDB27EBF09400B70B24 /* HeliumWidgetExtension.entitlements */,
 				13B07FAE1A68108700A75B9A /* Helium */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* HeliumTests */,
 				F8B0E21B256300AD00EB1E73 /* OneSignalNotificationServiceExtension */,
+				9D579E2527952EE9000EFCD5 /* HeliumWidget */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBB8A579C848048078120971 /* Pods */,
 				4E395C02883C4FB2ADE7CF53 /* Resources */,
+				D0368883646D5FA18C326B5F /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -295,21 +373,78 @@
 				13B07F961A680F5B00A75B9A /* Helium.app */,
 				00E356EE1AD99517003FC87E /* HeliumTests.xctest */,
 				F8B0E21A256300AD00EB1E73 /* OneSignalNotificationServiceExtension.appex */,
+				9D579E2027952EE8000EFCD5 /* HeliumWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9D579E2527952EE9000EFCD5 /* HeliumWidget */ = {
+			isa = PBXGroup;
+			children = (
+				9DF7AD88279DE53000E7CAEC /* README.md */,
+				9D72C0C12797C017004F1A00 /* HeliumWidgetBundle.swift */,
+				9D72C0BD2797BEC4004F1A00 /* HeliumBalanceWidget */,
+				9D72C0BC2797BEB0004F1A00 /* HeliumHotspotsWidget */,
+				9D579E2827952EE9000EFCD5 /* HeliumWidget.intentdefinition */,
+				9D579E2927952EEC000EFCD5 /* Assets.xcassets */,
+				9D579E2B27952EEC000EFCD5 /* Info.plist */,
+				9DF7AD7D279DB7A100E7CAEC /* Utils.swift */,
+				9DF7AD85279DCED000E7CAEC /* Localizable.strings */,
+			);
+			path = HeliumWidget;
+			sourceTree = "<group>";
+		};
+		9D72C0BC2797BEB0004F1A00 /* HeliumHotspotsWidget */ = {
+			isa = PBXGroup;
+			children = (
+				9D72C0C32797C06F004F1A00 /* HeliumHotspotsWidget.swift */,
+				9D72C0B92797BE9C004F1A00 /* HeliumHotspotsWidgetView.swift */,
+				9D72C0C527991246004F1A00 /* HeliumHotspotListItemView.swift */,
+				9D72C0BE2797BEED004F1A00 /* HeliumHotspotsWidgetProvider.swift */,
+				9DF7AD8927BCA04000E7CAEC /* HeliumHotspotsWidgetNetworkCalls.swift */,
+			);
+			path = HeliumHotspotsWidget;
+			sourceTree = "<group>";
+		};
+		9D72C0BD2797BEC4004F1A00 /* HeliumBalanceWidget */ = {
+			isa = PBXGroup;
+			children = (
+				9D579E2627952EE9000EFCD5 /* HeliumBalanceWidget.swift */,
+				9D72C0B327976C0C004F1A00 /* HeliumBalanceWidgetProvider.swift */,
+				9D72C0B62797BD42004F1A00 /* HeliumBalanceWidgetEntryView.swift */,
+				9DF7AD8B27BCA32F00E7CAEC /* HeliumBalanceWidgetNetworkCalls.swift */,
+			);
+			path = HeliumBalanceWidget;
+			sourceTree = "<group>";
+		};
+		B76ACDA5BE791373FE56B1B5 /* HeliumTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED37DC34EDED14E17A7A9033 /* ExpoModulesProvider.swift */,
+			);
+			name = HeliumTests;
 			sourceTree = "<group>";
 		};
 		BBB8A579C848048078120971 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0C1127B9BA1FDFCCD7DA3CBB /* Pods-Helium.debug.xcconfig */,
-				C6D26845385ABC05CF2EBAB8 /* Pods-Helium.release.xcconfig */,
-				6EDEC31FA02CF0C8C17E4116 /* Pods-Helium-HeliumTests.debug.xcconfig */,
-				EAF9784B2EC76EB219FE69E9 /* Pods-Helium-HeliumTests.release.xcconfig */,
-				0E904D2CCD7AB28A6C5B7C3A /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
-				1ED42C0AD18670C2DEA530AA /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
+				A07D7D3FE6559D874629BF61 /* Pods-Helium.debug.xcconfig */,
+				755F5AEF3C155D543F1DF6DD /* Pods-Helium.release.xcconfig */,
+				3CB5C1EB699604F1579AF8C2 /* Pods-Helium-HeliumTests.debug.xcconfig */,
+				712EEC322CBDB8FED5C8DEDB /* Pods-Helium-HeliumTests.release.xcconfig */,
+				95CD4A187085862594C8E317 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				2B5F4134AE433C8D64C77523 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D0368883646D5FA18C326B5F /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				686A357C2CC4DBC6BD6972A2 /* Helium */,
+				B76ACDA5BE791373FE56B1B5 /* HeliumTests */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		F8B0E21B256300AD00EB1E73 /* OneSignalNotificationServiceExtension */ = {
@@ -329,12 +464,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HeliumTests" */;
 			buildPhases = (
-				A5CEB93CADDCD03D892C7D1C /* [CP] Check Pods Manifest.lock */,
+				9EA425E5096007218AA62C7A /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				521735159C26F0712E9F9FB6 /* [CP] Embed Pods Frameworks */,
-				0D63B690CA9B682DC4495F19 /* [CP] Copy Pods Resources */,
+				E4D63EA1A9B3923BB5524AA2 /* [CP] Embed Pods Frameworks */,
+				F977F3ED1110F32C3AE1DB2B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,7 +485,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Helium" */;
 			buildPhases = (
-				DA533292F273BB5A38F98DB8 /* [CP] Check Pods Manifest.lock */,
+				60D237D4B5804B5A95F90C71 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -364,17 +499,35 @@
 			);
 			dependencies = (
 				F8B0E220256300AD00EB1E73 /* PBXTargetDependency */,
+				9D579E2F27952EEC000EFCD5 /* PBXTargetDependency */,
 			);
 			name = Helium;
 			productName = Helium;
 			productReference = 13B07F961A680F5B00A75B9A /* Helium.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9D579E1F27952EE8000EFCD5 /* HeliumWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D579E3327952EEC000EFCD5 /* Build configuration list for PBXNativeTarget "HeliumWidgetExtension" */;
+			buildPhases = (
+				9D579E1C27952EE8000EFCD5 /* Sources */,
+				9D579E1D27952EE8000EFCD5 /* Frameworks */,
+				9D579E1E27952EE8000EFCD5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeliumWidgetExtension;
+			productName = HeliumWidgetExtension;
+			productReference = 9D579E2027952EE8000EFCD5 /* HeliumWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F8B0E219256300AD00EB1E73 /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8B0E222256300AD00EB1E73 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
 			buildPhases = (
-				29E38171913630CFAE3AF200 /* [CP] Check Pods Manifest.lock */,
+				F0E7B038F13D27F9CD34293F /* [CP] Check Pods Manifest.lock */,
 				F8B0E216256300AD00EB1E73 /* Sources */,
 				F8B0E217256300AD00EB1E73 /* Frameworks */,
 				F8B0E218256300AD00EB1E73 /* Resources */,
@@ -394,7 +547,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -405,6 +558,11 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = JGR6X4LV9Q;
 						LastSwiftMigration = 1250;
+					};
+					9D579E1F27952EE8000EFCD5 = {
+						CreatedOnToolsVersion = 13.2.1;
+						DevelopmentTeam = PVM9KJZ2AD;
+						ProvisioningStyle = Automatic;
 					};
 					F8B0E219256300AD00EB1E73 = {
 						CreatedOnToolsVersion = 12.2;
@@ -419,6 +577,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
+				ko,
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
@@ -429,6 +589,7 @@
 				13B07F861A680F5B00A75B9A /* Helium */,
 				00E356ED1AD99517003FC87E /* HeliumTests */,
 				F8B0E219256300AD00EB1E73 /* OneSignalNotificationServiceExtension */,
+				9D579E1F27952EE8000EFCD5 /* HeliumWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -482,6 +643,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9D579E1E27952EE8000EFCD5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D579E2A27952EEC000EFCD5 /* Assets.xcassets in Resources */,
+				9DF7AD83279DCED000E7CAEC /* Localizable.strings in Resources */,
+				9D72C0B22797677B004F1A00 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8B0E218256300AD00EB1E73 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -517,98 +688,15 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Helium/Pods-Helium-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		29E38171913630CFAE3AF200 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4E00D3C5980DD5F657E3D762 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Helium/Pods-Helium-frameworks.sh",
-				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
-				"${BUILT_PRODUCTS_DIR}/MapboxMobileEvents/MapboxMobileEvents.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxMobileEvents.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Helium/Pods-Helium-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		521735159C26F0712E9F9FB6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests-frameworks.sh",
-				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
-				"${BUILT_PRODUCTS_DIR}/MapboxMobileEvents/MapboxMobileEvents.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxMobileEvents.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A5CEB93CADDCD03D892C7D1C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Helium-HeliumTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DA533292F273BB5A38F98DB8 /* [CP] Check Pods Manifest.lock */ = {
+		60D237D4B5804B5A95F90C71 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -630,22 +718,112 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E871BE60CD1527841988FA93 /* [CP] Copy Pods Resources */ = {
+		8ED451E79F79FC1276B30F40 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Helium/Pods-Helium-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Helium/Pods-Helium-frameworks.sh",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${BUILT_PRODUCTS_DIR}/MapboxMobileEvents/MapboxMobileEvents.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignal.framework/OneSignal",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxMobileEvents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OneSignal.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Helium/Pods-Helium-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EA425E5096007218AA62C7A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Helium-HeliumTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4D63EA1A9B3923BB5524AA2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests-frameworks.sh",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${BUILT_PRODUCTS_DIR}/MapboxMobileEvents/MapboxMobileEvents.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneSignalXCFramework/OneSignal.framework/OneSignal",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxMobileEvents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OneSignal.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0E7B038F13D27F9CD34293F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F977F3ED1110F32C3AE1DB2B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Helium/Pods-Helium-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Helium-HeliumTests/Pods-Helium-HeliumTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -675,6 +853,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* HeliumTests.m in Sources */,
+				D03C7CF3723D24414EB8F328 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,10 +861,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D579E2D27952EEC000EFCD5 /* HeliumWidget.intentdefinition in Sources */,
 				964E9C302638CD0C00CCBCCC /* bridge.swift in Sources */,
+				9D5D86C8279A3D9000A8B5B6 /* WidgetKitHelper.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				50220074260B81B500BE34C9 /* RCTDateModule.m in Sources */,
+				BC8AE2F359263CFDB1F5DAD7 /* ExpoModulesProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D579E1C27952EE8000EFCD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D72C0B82797BDCB004F1A00 /* HeliumBalanceWidgetEntryView.swift in Sources */,
+				9D72C0C627991246004F1A00 /* HeliumHotspotListItemView.swift in Sources */,
+				9D72C0C42797C06F004F1A00 /* HeliumHotspotsWidget.swift in Sources */,
+				9D579E2C27952EEC000EFCD5 /* HeliumWidget.intentdefinition in Sources */,
+				9D579E2727952EE9000EFCD5 /* HeliumBalanceWidget.swift in Sources */,
+				9DF7AD7F279DB89D00E7CAEC /* Utils.swift in Sources */,
+				9DF7AD8A27BCA04000E7CAEC /* HeliumHotspotsWidgetNetworkCalls.swift in Sources */,
+				9D72C0B527976CBC004F1A00 /* HeliumBalanceWidgetProvider.swift in Sources */,
+				9D72C0C22797C017004F1A00 /* HeliumWidgetBundle.swift in Sources */,
+				9D72C0BB2797BE9F004F1A00 /* HeliumHotspotsWidgetView.swift in Sources */,
+				9D72C0C02797BF04004F1A00 /* HeliumHotspotsWidgetProvider.swift in Sources */,
+				9DF7AD8C27BCA32F00E7CAEC /* HeliumBalanceWidgetNetworkCalls.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +906,11 @@
 			target = 13B07F861A680F5B00A75B9A /* Helium */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
+		9D579E2F27952EEC000EFCD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D579E1F27952EE8000EFCD5 /* HeliumWidgetExtension */;
+			targetProxy = 9D579E2E27952EEC000EFCD5 /* PBXContainerItemProxy */;
+		};
 		F8B0E220256300AD00EB1E73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F8B0E219256300AD00EB1E73 /* OneSignalNotificationServiceExtension */;
@@ -712,10 +918,23 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		9DF7AD85279DCED000E7CAEC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9DF7AD84279DCED000E7CAEC /* en */,
+				9DF7AD86279DCEE500E7CAEC /* ja */,
+				9DF7AD87279DCEE700E7CAEC /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EDEC31FA02CF0C8C17E4116 /* Pods-Helium-HeliumTests.debug.xcconfig */;
+			baseConfigurationReference = 3CB5C1EB699604F1579AF8C2 /* Pods-Helium-HeliumTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -725,7 +944,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = HeliumTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -733,6 +952,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helium.app/Helium";
 			};
@@ -740,14 +960,14 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EAF9784B2EC76EB219FE69E9 /* Pods-Helium-HeliumTests.release.xcconfig */;
+			baseConfigurationReference = 712EEC322CBDB8FED5C8DEDB /* Pods-Helium-HeliumTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = JGR6X4LV9Q;
 				INFOPLIST_FILE = HeliumTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -755,6 +975,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helium.app/Helium";
 			};
@@ -762,7 +983,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C1127B9BA1FDFCCD7DA3CBB /* Pods-Helium.debug.xcconfig */;
+			baseConfigurationReference = A07D7D3FE6559D874629BF61 /* Pods-Helium.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -775,13 +996,14 @@
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Helium/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.7.4;
+				MARKETING_VERSION = 4.2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fairspot.mobile.wallet;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = Helium;
 				SWIFT_OBJC_BRIDGING_HEADER = "Helium-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -793,7 +1015,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C6D26845385ABC05CF2EBAB8 /* Pods-Helium.release.xcconfig */;
+			baseConfigurationReference = 755F5AEF3C155D543F1DF6DD /* Pods-Helium.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -805,13 +1027,14 @@
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Helium/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.7.4;
+				MARKETING_VERSION = 4.2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fairspot.mobile.wallet;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = Helium;
 				SWIFT_OBJC_BRIDGING_HEADER = "Helium-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -873,12 +1096,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.2/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Debug;
 		};
@@ -928,18 +1152,98 @@
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.2/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9D579E3127952EEC000EFCD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = HeliumWidgetExtensionDebug.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PVM9KJZ2AD;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HeliumWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HeliumWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 4.2.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.helium.mobile.wallet.HeliumWidget;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9D579E3227952EEC000EFCD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = HeliumWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PVM9KJZ2AD;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HeliumWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HeliumWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 4.2.1;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.helium.mobile.wallet.HeliumWidget;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		F8B0E223256300AD00EB1E73 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E904D2CCD7AB28A6C5B7C3A /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = 95CD4A187085862594C8E317 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -953,14 +1257,16 @@
 				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JGR6X4LV9Q;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.7.4;
+				MARKETING_VERSION = 4.2.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fairspot.mobile.wallet.OneSignalNotificationServiceExtension;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -972,7 +1278,7 @@
 		};
 		F8B0E224256300AD00EB1E73 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1ED42C0AD18670C2DEA530AA /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
+			baseConfigurationReference = 2B5F4134AE433C8D64C77523 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -987,13 +1293,15 @@
 				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JGR6X4LV9Q;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.7.4;
+				MARKETING_VERSION = 4.2.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fairspot.mobile.wallet.OneSignalNotificationServiceExtension;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1028,6 +1336,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D579E3327952EEC000EFCD5 /* Build configuration list for PBXNativeTarget "HeliumWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D579E3127952EEC000EFCD5 /* Debug */,
+				9D579E3227952EEC000EFCD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

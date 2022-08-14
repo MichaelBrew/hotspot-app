@@ -2,7 +2,13 @@ import React from 'react'
 import { NavigationContainerRef } from '@react-navigation/native'
 import { HotspotStackParamList } from 'src/features/hotspots/root/hotspotTypes'
 import { LockScreenRequestType } from './main/tabTypes'
-import { AppLink, AppLinkPayment } from '../providers/appLinkTypes'
+import {
+  AppLink,
+  AppLinkPayment,
+  AppLinkTransfer,
+  LinkWalletRequest,
+  SignHotspotRequest,
+} from '../providers/appLinkTypes'
 
 export const navigationRef = React.createRef<NavigationContainerRef>()
 
@@ -13,7 +19,9 @@ const lock = (params: {
   navigationRef.current?.navigate('LockScreen', params)
 }
 
-const send = (params: { scanResult: AppLink | AppLinkPayment }) => {
+const send = (params: {
+  scanResult: AppLink | AppLinkPayment | AppLinkTransfer
+}) => {
   navigationRef.current?.navigate('Send', params)
 }
 
@@ -55,6 +63,14 @@ const confirmAddGateway = (addGatewayTxn: string) => {
   })
 }
 
+const linkWallet = (request: LinkWalletRequest) => {
+  navigationRef.current?.navigate('LinkWallet', request)
+}
+
+const signHotspot = (request: SignHotspotRequest) => {
+  navigationRef.current?.navigate('SignHotspot', request)
+}
+
 export default {
   lock,
   send,
@@ -62,5 +78,7 @@ export default {
   viewValidator,
   confirmAddGateway,
   updateHotspotLocation,
+  linkWallet,
+  signHotspot,
   updateHotspotAntenna,
 }

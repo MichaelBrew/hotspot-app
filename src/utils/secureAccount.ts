@@ -1,6 +1,9 @@
-import { Address, Keypair, Mnemonic } from '@helium/crypto-react-native'
+import { Keypair, Mnemonic } from '@helium/crypto-react-native'
+import { LinkWalletRequest, makeAppLinkAuthToken } from '@helium/wallet-link'
+import { getUnixTime } from 'date-fns'
 import * as SecureStore from 'expo-secure-store'
 import OneSignal from 'react-native-onesignal'
+import Address, { NetTypes } from '@helium/address'
 import * as Logger from './logger'
 
 type AccountStoreKey = BooleanKey | StringKey
@@ -49,24 +52,34 @@ export async function getSecureItem(key: AccountStoreKey) {
 export const deleteSecureItem = async (key: AccountStoreKey) =>
   SecureStore.deleteItemAsync(key)
 
-export const createKeypair = async (
-  givenMnemonic: Mnemonic | Array<string> | null = null,
-) => {
-  let mnemonic: Mnemonic
-  if (!givenMnemonic) {
-    mnemonic = await Mnemonic.create()
-  } else if ('words' in givenMnemonic) {
-    mnemonic = givenMnemonic
+type KeypairParams = {
+  mnemonic?: Mnemonic | Array<string>
+  netType?: NetTypes.NetType
+  wordCount?: 12 | 24
+}
+export const createKeypair = async ({
+  mnemonic,
+  netType,
+  wordCount,
+}: KeypairParams) => {
+  let newMnemonic: Mnemonic
+  if (!mnemonic) {
+    newMnemonic = await Mnemonic.create(wordCount)
+  } else if ('words' in mnemonic) {
+    newMnemonic = mnemonic
   } else {
-    mnemonic = new Mnemonic(givenMnemonic)
+    newMnemonic = new Mnemonic(mnemonic)
   }
-  const { keypair: keypairRaw, address } = await Keypair.fromMnemonic(mnemonic)
+  const { keypair: keypairRaw, address } = await Keypair.fromMnemonic(
+    newMnemonic,
+    netType,
+  )
 
   OneSignal.sendTags({ address: address.b58 })
   Logger.setUser(address.b58)
 
   await Promise.all([
-    setSecureItem('mnemonic', JSON.stringify(mnemonic.words)),
+    setSecureItem('mnemonic', JSON.stringify(newMnemonic.words)),
     setSecureItem('keypair', JSON.stringify(keypairRaw)),
     setSecureItem('address', address.b58),
   ])
@@ -105,17 +118,17 @@ const makeSignature = async (token: { address: string; time: number }) => {
   const stringifiedToken = JSON.stringify(token)
   const keypair = await getKeypair()
   if (!keypair) return
-  const buffer = await keypair.sign(stringifiedToken)
+  const signature = await keypair.sign(stringifiedToken)
 
-  return buffer.toString('base64')
+  return Buffer.from(signature).toString('base64')
 }
 
 export const makeDiscoverySignature = async (hotspotAddress: string) => {
   const keypair = await getKeypair()
   if (!keypair) return
-  const buffer = await keypair.sign(hotspotAddress)
+  const signature = await keypair.sign(hotspotAddress)
 
-  return buffer.toString('base64')
+  return Buffer.from(signature).toString('base64')
 }
 
 const makeWalletApiToken = async (address: string) => {
@@ -142,6 +155,24 @@ export const getWalletApiToken = async () => {
   const apiToken = await makeWalletApiToken(address)
   await setSecureItem('walletApiToken', apiToken)
   return apiToken
+}
+
+export const createLinkToken = async (
+  token: LinkWalletRequest & {
+    signingAppId: string
+    address: string
+  },
+) => {
+  const keypair = await getKeypair()
+  if (!keypair) return
+  const time = getUnixTime(new Date())
+  return makeAppLinkAuthToken(
+    {
+      time,
+      ...token,
+    },
+    keypair,
+  )
 }
 
 export const signOut = async () => {

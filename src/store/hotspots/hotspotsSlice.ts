@@ -1,34 +1,37 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Hotspot } from '@helium/http'
 import Balance, { CurrencyType, NetworkTokens } from '@helium/currency'
-import { uniq } from 'lodash'
 import { getHotspotDetails, getHotspots } from '../../utils/appDataClient'
 import { LocationCoords } from '../../utils/location'
 import { getWallet, deleteWallet, postWallet } from '../../utils/walletClient'
-import { CacheRecord, handleCacheFulfilled } from '../../utils/cacheUtils'
+import {
+  CacheRecord,
+  handleCacheFulfilled,
+  hasValidCache,
+} from '../../utils/cacheUtils'
 import { HotspotSyncStatus } from '../../features/hotspots/root/hotspotTypes'
 import { WalletReward } from '../rewards/rewardsSlice'
 
 export type Rewards = Record<string, Balance<NetworkTokens>>
 
 export type HotspotsSliceState = {
-  hotspots: Hotspot[]
+  hotspots: CacheRecord<{ data: Hotspot[] }>
   orderedHotspots: Hotspot[]
   followedHotspotsObj: Record<string, Hotspot>
-  followedHotspots: Hotspot[]
-  rewards: Rewards
+  followedHotspots: CacheRecord<{ data: Hotspot[] }>
   location?: LocationCoords
   loadingRewards: boolean
   hotspotsLoaded: boolean
   failure: boolean
   syncStatuses: Record<string, CacheRecord<{ status: HotspotSyncStatus }>>
+  rewards: Rewards
 }
 
 const initialState: HotspotsSliceState = {
-  hotspots: [],
+  hotspots: { lastFetchedTimestamp: 0, loading: false, data: [] },
   orderedHotspots: [],
   followedHotspotsObj: {},
-  followedHotspots: [],
+  followedHotspots: { lastFetchedTimestamp: 0, loading: false, data: [] },
   loadingRewards: false,
   hotspotsLoaded: false,
   failure: false,
@@ -38,27 +41,12 @@ const initialState: HotspotsSliceState = {
 
 export const fetchRewards = createAsyncThunk<
   WalletReward[],
-  { fetchType: 'all' | 'followed' }
->('hotspots/fetchRewards', async ({ fetchType }, { getState }) => {
-  const { hotspots, followedHotspots } = (getState() as {
-    hotspots: {
-      hotspots: Hotspot[]
-      followedHotspots: Hotspot[]
-    }
-  }).hotspots
-  let gatewayAddresses = followedHotspots.map((h) => h.address)
-  if (fetchType === 'all') {
-    const ownedAddresses = hotspots.map((h) => h.address)
-    gatewayAddresses = uniq([...ownedAddresses, ...gatewayAddresses])
-  }
-  if (gatewayAddresses.length === 0) return []
-
-  if (gatewayAddresses.length === 0) {
-    return []
-  }
+  { addresses: string[] }
+>('hotspots/fetchRewards', async ({ addresses }) => {
+  if (!addresses.length) return []
 
   return getWallet('hotspots/rewards', {
-    addresses: gatewayAddresses.join(','),
+    addresses: addresses.join(','),
     dayRange: 1,
   })
 })
@@ -74,13 +62,23 @@ const sanitizeWalletHotspots = (hotspots: WalletHotspot[]) => {
 type WalletHotspot = Hotspot & { lat: string; lng: string }
 export const fetchHotspotsData = createAsyncThunk(
   'hotspots/fetchHotspotsData',
-  async (_arg) => {
-    const allHotspots = await Promise.all(
-      [
-        getHotspots(),
-        getWallet('hotspots/follow', null, { camelCase: true }),
-      ].map((p) => p.catch(() => {})),
-    )
+  async (_arg, { getState }) => {
+    const state = ((await getState()) as { hotspots: HotspotsSliceState })
+      .hotspots
+    if (
+      hasValidCache(state.hotspots) &&
+      hasValidCache(state.followedHotspots)
+    ) {
+      return {
+        hotspots: state.hotspots.data,
+        followedHotspots: state.followedHotspots.data,
+      }
+    }
+
+    const allHotspots = await Promise.all([
+      getHotspots(),
+      getWallet('hotspots/follow', null, { camelCase: true }),
+    ])
 
     const [hotspots = [], followedHotspots = []]: [
       Hotspot[],
@@ -153,8 +151,13 @@ const hotspotsToObj = (hotspots: Hotspot[]) =>
     }
   }, {})
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const hotspotsSliceMigrations: any = {
+  0: () => initialState, // migration for hotspots and followedHotspots moving to CacheRecord
+}
+
 const hotspotsSlice = createSlice({
-  name: 'hotspotDetails',
+  name: 'hotspots',
   initialState,
   reducers: {
     signOut: () => {
@@ -174,9 +177,9 @@ const hotspotsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchHotspotsData.fulfilled, (state, action) => {
       const followed: Hotspot[] = action.payload.followedHotspots
-      state.followedHotspots = followed
+      state.followedHotspots = handleCacheFulfilled({ data: followed })
       state.followedHotspotsObj = hotspotsToObj(followed)
-      state.hotspots = action.payload.hotspots
+      state.hotspots = handleCacheFulfilled({ data: action.payload.hotspots })
       state.hotspotsLoaded = true
       state.failure = false
     })
@@ -208,7 +211,7 @@ const hotspotsSlice = createSlice({
           return (hotspot as Hotspot) || walletFollowed
         })
 
-        state.followedHotspots = nextFollowed
+        state.followedHotspots = handleCacheFulfilled({ data: nextFollowed })
         state.followedHotspotsObj = hotspotsToObj(nextFollowed)
       },
     )
@@ -225,7 +228,7 @@ const hotspotsSlice = createSlice({
           return (hotspot as Hotspot) || walletFollowed
         })
 
-        state.followedHotspots = nextFollowed
+        state.followedHotspots = handleCacheFulfilled({ data: nextFollowed })
         state.followedHotspotsObj = hotspotsToObj(nextFollowed)
 
         if (hotspotRewards) {

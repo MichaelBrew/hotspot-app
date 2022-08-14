@@ -31,7 +31,6 @@ import accountSlice, {
   updateFleetModeEnabled,
   updateSetting,
 } from '../../../store/account/accountSlice'
-import connectedHotspotSlice from '../../../store/connectedHotspot/connectedHotspotSlice'
 import Security from '../../../assets/images/security.svg'
 import Learn from '../../../assets/images/learn.svg'
 import Account from '../../../assets/images/account.svg'
@@ -39,15 +38,17 @@ import Box from '../../../components/Box'
 import DiscordItem from './DiscordItem'
 import AppInfoItem from './AppInfoItem'
 import DeployModeModal from './DeployModeModal'
-import activitySlice from '../../../store/activity/activitySlice'
-import hotspotsSlice from '../../../store/hotspots/hotspotsSlice'
 import { useLanguageContext } from '../../../providers/LanguageProvider'
 import { EXPLORER_BASE_URL } from '../../../utils/config'
 import { SUPPORTED_LANGUAGUES } from '../../../utils/i18n/i18nTypes'
 import Articles from '../../../constants/articles'
 import useAlert from '../../../utils/useAlert'
-import validatorsSlice from '../../../store/validators/validatorsSlice'
 import { SUPPORTED_CURRENCIES } from '../../../utils/useCurrency'
+import { clearMapCache } from '../../../utils/mapUtils'
+import activitySlice from '../../../store/activity/activitySlice'
+import hotspotsSlice from '../../../store/hotspots/hotspotsSlice'
+import validatorsSlice from '../../../store/validators/validatorsSlice'
+import connectedHotspotSlice from '../../../store/connectedHotspot/connectedHotspotSlice'
 
 type Route = RouteProp<RootStackParamList & MoreStackParamList, 'MoreScreen'>
 const MoreScreen = () => {
@@ -62,6 +63,9 @@ const MoreScreen = () => {
   const account = useSelector((state: RootState) => state.account, isEqual)
   const fleetModeLowerLimit = useSelector(
     (state: RootState) => state.features.fleetModeLowerLimit,
+  )
+  const isDeployModeEnabled = useSelector(
+    (state: RootState) => state.app.isDeployModeEnabled,
   )
   const authIntervals = useAuthIntervals()
   const { showOKCancelAlert } = useAlert()
@@ -189,48 +193,49 @@ const MoreScreen = () => {
     )
   }, [dispatch, showHiddenHotspots])
 
+  const handleClearMapCache = useCallback(async () => {
+    const decision = await showOKCancelAlert({
+      titleKey: 'more.sections.app.clearMapCacheAlert.title',
+      messageKey: 'more.sections.app.clearMapCacheAlert.body',
+    })
+    if (!decision) return
+    await clearMapCache()
+  }, [showOKCancelAlert])
+
   const handleSignOut = useCallback(() => {
-    Alert.alert(
-      t('more.sections.app.signOutAlert.title'),
-      t('more.sections.app.signOutAlert.body'),
-      [
-        {
-          text: t('generic.cancel'),
-          style: 'cancel',
-        },
-        {
-          text: t('more.sections.app.signOut'),
-          style: 'destructive',
-          onPress: () => {
-            dispatch(appSlice.actions.signOut())
-            dispatch(accountSlice.actions.signOut())
-            dispatch(activitySlice.actions.signOut())
-            dispatch(hotspotsSlice.actions.signOut())
-            dispatch(validatorsSlice.actions.signOut())
-            dispatch(connectedHotspotSlice.actions.signOut())
+    if (isDeployModeEnabled) {
+      Alert.alert(
+        t('more.sections.app.signOutAlert.title'),
+        t('more.sections.app.signOutAlert.body'),
+        [
+          {
+            text: t('generic.cancel'),
+            style: 'cancel',
           },
-        },
-      ],
-    )
-  }, [t, dispatch])
+          {
+            text: t('more.sections.app.signOut'),
+            style: 'destructive',
+            onPress: () => {
+              dispatch(appSlice.actions.signOut())
+              dispatch(accountSlice.actions.signOut())
+              dispatch(activitySlice.actions.signOut())
+              dispatch(hotspotsSlice.actions.signOut())
+              dispatch(validatorsSlice.actions.signOut())
+              dispatch(connectedHotspotSlice.actions.signOut())
+            },
+          },
+        ],
+      )
+    } else {
+      navigation.push('ConfirmSignout')
+    }
+  }, [dispatch, isDeployModeEnabled, navigation, t])
 
   const handleLanguageChange = useCallback(
     (lng: string) => {
       changeLanguage(lng)
     },
     [changeLanguage],
-  )
-
-  const handleNetworkChange = useCallback(
-    (network: string) => {
-      dispatch(
-        updateSetting({
-          key: 'network',
-          value: network,
-        }),
-      )
-    },
-    [dispatch],
   )
 
   const handleCurrencyTypeChange = useCallback(
@@ -371,17 +376,6 @@ const MoreScreen = () => {
             },
           },
           {
-            title: t('more.sections.app.network'),
-            value: account.settings.network,
-            select: {
-              items: [
-                { label: 'StakeJoy API', value: 'stakejoy' },
-                { label: 'Helium API', value: 'helium' },
-              ],
-              onValueSelect: handleNetworkChange,
-            },
-          },
-          {
             title: t('more.sections.app.enableHapticFeedback'),
             onToggle: handleHaptic,
             value: !app.isHapticDisabled,
@@ -400,6 +394,10 @@ const MoreScreen = () => {
             title: t('more.sections.app.showHiddenHotspots'),
             onToggle: handleShowHiddenHotspots,
             value: showHiddenHotspots,
+          },
+          {
+            title: t('more.sections.app.clearMapCache'),
+            onPress: handleClearMapCache,
           },
           {
             title: t('more.sections.app.signOut'),
@@ -423,11 +421,9 @@ const MoreScreen = () => {
     language,
     handleLanguageChange,
     account.settings.currencyType,
-    account.settings.network,
     account.settings.convertHntToCurrency,
     account.settings.isFleetModeEnabled,
     handleCurrencyTypeChange,
-    handleNetworkChange,
     handleHaptic,
     handleConvertHntToCurrency,
     handleFleetMode,
@@ -440,6 +436,7 @@ const MoreScreen = () => {
     handleResetPin,
     handlePinRequiredForPayment,
     showingDeployModeConfirmation,
+    handleClearMapCache,
   ])
 
   const contentContainer = useMemo(

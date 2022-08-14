@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { ActivityIndicator, Alert } from 'react-native'
 import { useTranslation } from 'react-i18next'
-import { Address } from '@helium/crypto-react-native'
+import Address from '@helium/address'
 import { Account } from '@helium/http'
 import Balance, { NetworkTokens } from '@helium/currency'
 import { useAsync } from 'react-async-hook'
@@ -84,6 +84,7 @@ const SendDetailsForm = ({
   const [dcAmount, setDcAmount] = useState<string>(sendDetails.dcAmount)
   const [memo, setMemo] = useState<string>(sendDetails.memo)
   const [isHotspotAddress, setIsHotspotAddress] = useState<boolean>()
+  const [hotspotLoadFailed, setHotspotLoadFailed] = useState(false)
 
   useEffect(() => {
     updateSendDetails(sendDetails.id, {
@@ -173,16 +174,11 @@ const SendDetailsForm = ({
     }
   }
 
-  const handleAddressChange = useCallback((text: string) => {
-    setIsHotspotAddress(false)
-    setAddress(text)
-  }, [])
-
-  const onDoneEditingAddress = async () => {
-    if (!Address.isValid(address)) return
+  const checkHotspotAddress = useCallback(async () => {
     setAddressLoading(true)
     try {
       const hotspot = await getHotspotDetails(address)
+      setHotspotLoadFailed(false)
       if (hotspot.address === address) {
         setIsHotspotAddress(true)
         setSendDisabled(true)
@@ -190,11 +186,18 @@ const SendDetailsForm = ({
         return
       }
     } catch (e) {
-      setIsHotspotAddress(false)
-      setSendDisabled(false)
+      if (e?.message === 'Request failed with status code 404') {
+        setIsHotspotAddress(false)
+        setHotspotLoadFailed(false)
+        setSendDisabled(false)
+      } else {
+        setHotspotLoadFailed(true)
+        setSendDisabled(true)
+      }
     }
     try {
       const validator = await getValidatorDetails(address)
+      setHotspotLoadFailed(false)
       if (validator.address === address) {
         setIsHotspotAddress(true)
         setSendDisabled(true)
@@ -202,10 +205,37 @@ const SendDetailsForm = ({
         return
       }
     } catch (e) {
-      setIsHotspotAddress(false)
-      setSendDisabled(false)
+      if (e?.message === 'Request failed with status code 404') {
+        setIsHotspotAddress(false)
+        setHotspotLoadFailed(false)
+        setSendDisabled(false)
+      } else {
+        setHotspotLoadFailed(true)
+        setSendDisabled(true)
+      }
     }
     setAddressLoading(false)
+  }, [address, setSendDisabled])
+
+  // set isHotspotAddress for default address
+  useAsync(async () => {
+    if (
+      address !== undefined &&
+      address !== '' &&
+      isHotspotAddress === undefined
+    ) {
+      await checkHotspotAddress()
+    }
+  }, [])
+
+  const handleAddressChange = useCallback((text: string) => {
+    setIsHotspotAddress(false)
+    setAddress(text)
+  }, [])
+
+  const onDoneEditingAddress = async () => {
+    if (!Address.isValid(address)) return
+    await checkHotspotAddress()
   }
 
   const renderLockedPaymentForm = () => (
@@ -255,6 +285,7 @@ const SendDetailsForm = ({
               addressLoading={addressLoading}
               isValidAddress={
                 Address.isValid(address) &&
+                !hotspotLoadFailed &&
                 isHotspotAddress !== undefined &&
                 !isHotspotAddress
               }
@@ -264,7 +295,12 @@ const SendDetailsForm = ({
           footer={
             <Box>
               <AddressAliasFooter addressAlias={addressAlias} />
-              {isHotspotAddress && (
+              {hotspotLoadFailed && (
+                <Text color="redMain" variant="body2">
+                  {t('send.load_failed')}
+                </Text>
+              )}
+              {!hotspotLoadFailed && isHotspotAddress && (
                 <Text color="redMain" variant="body2">
                   {t('send.not_valid_address')}
                 </Text>
@@ -371,39 +407,39 @@ const SendDetailsForm = ({
   )
 
   const renderSellerTransferForm = () => (
-    <>
-      <InputField
-        defaultValue={address}
-        onChange={setAddress}
-        label={t('send.address.label_transfer')}
-        placeholder={t('send.address.placeholder')}
-        extra={
-          Address.isValid(address) ? (
-            <Box padding="s" position="absolute" right={0}>
-              <Check />
-            </Box>
-          ) : (
-            <TouchableOpacityBox
-              onPress={onScanPress}
-              padding="s"
-              position="absolute"
-              right={0}
-            >
-              <QrCode width={16} color={primaryMain} />
-            </TouchableOpacityBox>
-          )
-        }
-      />
-      <InputField
-        type="decimal-pad"
-        defaultValue={amount}
-        onChange={setFormAmount}
-        value={amount}
-        numberOfLines={2}
-        label={t('send.amount.label_transfer')}
-        placeholder={t('send.amount.placeholder_transfer')}
-      />
-    </>
+    <InputField
+      defaultValue={address}
+      onChange={handleAddressChange}
+      onEndEditing={onDoneEditingAddress}
+      label={t('send.address.label_transfer')}
+      placeholder={t('send.address.placeholder')}
+      extra={
+        <AddressExtra
+          addressLoading={addressLoading}
+          isValidAddress={
+            Address.isValid(address) &&
+            !hotspotLoadFailed &&
+            isHotspotAddress !== undefined &&
+            !isHotspotAddress
+          }
+          onScanPress={onScanPress}
+        />
+      }
+      footer={
+        <Box>
+          {hotspotLoadFailed && (
+            <Text color="redMain" variant="body2">
+              {t('send.load_failed')}
+            </Text>
+          )}
+          {!hotspotLoadFailed && isHotspotAddress && (
+            <Text color="redMain" variant="body2">
+              {t('send.not_valid_address')}
+            </Text>
+          )}
+        </Box>
+      }
+    />
   )
 
   const renderBuyerTransferForm = () => (
