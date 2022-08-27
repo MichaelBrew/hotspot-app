@@ -421,7 +421,9 @@ const SendView = ({
       throw new Error('TransferV2: missing hotspot or seller for transfer')
     }
     const gateway = await getHotspotDetails(hotspotAddress)
-    if (!gateway?.speculativeNonce) {
+    // speculativeNonce can be 0 if hotspot was never asserted,
+    // so check for number type instead of using ! operator
+    if (!gateway || typeof gateway.speculativeNonce !== 'number') {
       throw new Error('TransferV2: missing gateway speculativeNonce')
     }
     return makeTransferV2Txn(
