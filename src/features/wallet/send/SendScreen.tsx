@@ -42,8 +42,10 @@ const SendScreen = ({ route }: Props) => {
     (state: RootState) => state.app.permanentPaymentAddress,
   )
 
-  // If "Deploy Mode" is enabled, only allow payment transactions
-  if (isDeployModeEnabled) type = 'payment'
+  // If "Deploy Mode" is enabled, only allow payment transactions +++ AND TRANSFERS
+  // +++ = modified for FairSpot app
+  if (isDeployModeEnabled && type !== 'payment' && type !== 'transfer')
+    type = 'payment'
   // If "Deploy Mode" is enabled without a permanent payment address, disable all payments
   const isDeployModePaymentsDisabled =
     isDeployModeEnabled && !permanentPaymentAddress

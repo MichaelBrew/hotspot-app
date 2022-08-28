@@ -213,7 +213,12 @@ const SendView = ({
 
   // process scan results
   useEffect(() => {
-    if (!scanResult || isDeployModeEnabled || !currentOraclePrice) return
+    if (
+      !scanResult ||
+      (isDeployModeEnabled && scanResult.type !== 'transfer') ||
+      !currentOraclePrice
+    )
+      return
     setType(scanResult.type)
     const getAmountAndBalance = (scanAmount?: string | number) => {
       let amount = ''
